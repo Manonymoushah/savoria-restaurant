@@ -1,14 +1,8 @@
 # 🍽️ Savoria Restaurant - Full-Stack Website# 🍽️ Savoria Restaurant - Full-Stack Website
 
-
-
 A modern, elegant restaurant website with a complete Node.js backend, SQLite database, and beautiful responsive frontend.> **An Award-Winning, Full-Featured Restaurant Website with Node.js Backend**
 
-
-
 ## 🚀 FeaturesA modern, elegant, and fully responsive **full-stack** restaurant website featuring exceptional design, smooth animations, interactive elements, and a complete working backend with database integration. Built as a class project to showcase advanced web development skills.
-
-
 
 - **10 Pages**: Home, About, Menu, Reservations, Gallery, Events, Blog, Contact, 404## 🚀 Full-Stack Features
 
@@ -40,8 +34,6 @@ A modern, elegant restaurant website with a complete Node.js backend, SQLite dat
 
 - Google Fonts (Playfair Display + Lato)- Form processing and validation
 
-
-
 **Backend:**### **Database** (SQLite)
 
 - Node.js
@@ -54,17 +46,11 @@ A modern, elegant restaurant website with a complete Node.js backend, SQLite dat
 
 - CORS, Body-Parser- Event inquiries
 
-
-
 ## 📦 Quick Start## ✨ Features
-
-
 
 ### Development (Local)### 🎨 Design & Aesthetics
 
-
-
-```bash- **Modern Fine Dining Theme**: Elegant color scheme (Gold #d4af37 + Black #1a1a1a)
+````bash- **Modern Fine Dining Theme**: Elegant color scheme (Gold #d4af37 + Black #1a1a1a)
 
 # Install dependencies- **Glassmorphism Effects**: Frosted glass cards and overlays
 
@@ -102,19 +88,19 @@ git push origin main   - Testimonials carousel
 
 # Go to railway.app → New Project → Deploy from GitHub2. **about.html** - About Us
 
-```
+````
 
-   - Restaurant story and mission
+- Restaurant story and mission
 
-See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.   - Interactive timeline of milestones
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions. - Interactive timeline of milestones
 
-   - Chef profiles with photos
+- Chef profiles with photos
 
-## 📁 Project Structure   - Awards and recognition
+## 📁 Project Structure - Awards and recognition
 
-   - Team photos gallery
+- Team photos gallery
 
-```
+````
 
 /restaurant3. **menu.html** - Menu
 
@@ -353,7 +339,7 @@ Built with ❤️ as a class project to showcase full-stack web development skil
       ├── blog.html           # Blog listing
       ├── blog-post.html      # Individual blog post
       └── contact.html        # Contact page
-```
+````
 
 ### 🗄️ Database Schema
 

@@ -193,6 +193,45 @@ app.get("/api/reservations/:id", (req, res) => {
   });
 });
 
+// Update reservation status
+app.put("/api/reservations/:id", (req, res) => {
+  const { status } = req.body;
+  const sql = "UPDATE reservations SET status = ? WHERE id = ?";
+
+  db.run(sql, [status, req.params.id], function (err) {
+    if (err) {
+      return res
+        .status(500)
+        .json({ success: false, message: "Error updating reservation" });
+    }
+    if (this.changes === 0) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Reservation not found" });
+    }
+    res.json({ success: true, message: "Reservation updated successfully" });
+  });
+});
+
+// Delete reservation
+app.delete("/api/reservations/:id", (req, res) => {
+  const sql = "DELETE FROM reservations WHERE id = ?";
+
+  db.run(sql, [req.params.id], function (err) {
+    if (err) {
+      return res
+        .status(500)
+        .json({ success: false, message: "Error deleting reservation" });
+    }
+    if (this.changes === 0) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Reservation not found" });
+    }
+    res.json({ success: true, message: "Reservation deleted successfully" });
+  });
+});
+
 // ========================================
 // CONTACT FORM
 // ========================================
@@ -289,6 +328,25 @@ app.get("/api/newsletter/subscribers", (req, res) => {
   });
 });
 
+// Delete newsletter subscriber
+app.delete("/api/newsletter/subscribers/:id", (req, res) => {
+  const sql = "DELETE FROM newsletter_subscribers WHERE id = ?";
+
+  db.run(sql, [req.params.id], function (err) {
+    if (err) {
+      return res
+        .status(500)
+        .json({ success: false, message: "Error deleting subscriber" });
+    }
+    if (this.changes === 0) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Subscriber not found" });
+    }
+    res.json({ success: true, message: "Subscriber deleted successfully" });
+  });
+});
+
 // ========================================
 // EVENT INQUIRIES
 // ========================================
@@ -344,6 +402,25 @@ app.get("/api/events/inquiries", (req, res) => {
   });
 });
 
+// Delete event inquiry
+app.delete("/api/events/inquiries/:id", (req, res) => {
+  const sql = "DELETE FROM event_inquiries WHERE id = ?";
+
+  db.run(sql, [req.params.id], function (err) {
+    if (err) {
+      return res
+        .status(500)
+        .json({ success: false, message: "Error deleting inquiry" });
+    }
+    if (this.changes === 0) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Inquiry not found" });
+    }
+    res.json({ success: true, message: "Inquiry deleted successfully" });
+  });
+});
+
 // Get all contact submissions (for admin)
 app.get("/api/contact", (req, res) => {
   const sql = "SELECT * FROM contact_submissions ORDER BY created_at DESC";
@@ -358,6 +435,25 @@ app.get("/api/contact", (req, res) => {
         });
     }
     res.json({ success: true, submissions: rows });
+  });
+});
+
+// Delete contact submission
+app.delete("/api/contact/:id", (req, res) => {
+  const sql = "DELETE FROM contact_submissions WHERE id = ?";
+
+  db.run(sql, [req.params.id], function (err) {
+    if (err) {
+      return res
+        .status(500)
+        .json({ success: false, message: "Error deleting contact" });
+    }
+    if (this.changes === 0) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Contact not found" });
+    }
+    res.json({ success: true, message: "Contact deleted successfully" });
   });
 });
 

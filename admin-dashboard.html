@@ -236,11 +236,12 @@
                 <th>Guests</th>
                 <th>Occasion</th>
                 <th>Status</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody id="reservationsBody">
               <tr>
-                <td colspan="9" class="text-center">
+                <td colspan="10" class="text-center">
                   <i class="fas fa-spinner fa-spin"></i> Loading...
                 </td>
               </tr>
@@ -269,7 +270,7 @@
                 <th>Subject</th>
                 <th>Message</th>
                 <th>Created</th>
-                <th>Status</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody id="contactsBody">
@@ -301,7 +302,7 @@
                 <th>Email</th>
                 <th>Name</th>
                 <th>Subscribed At</th>
-                <th>Status</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody id="subscribersBody">
@@ -336,7 +337,7 @@
                 <th>Event Date</th>
                 <th>Guests</th>
                 <th>Created</th>
-                <th>Status</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody id="eventsBody">
@@ -358,9 +359,15 @@
           ? "http://localhost:3000/api"
           : "/api";
 
-      async function apiCall(endpoint) {
+      async function apiCall(endpoint, method = "GET", body = null) {
         try {
-          const response = await fetch(`${API_URL}${endpoint}`);
+          const options = {
+            method,
+            headers: { "Content-Type": "application/json" },
+          };
+          if (body) options.body = JSON.stringify(body);
+
+          const response = await fetch(`${API_URL}${endpoint}`, options);
           const data = await response.json();
           return data;
         } catch (error) {
@@ -369,10 +376,76 @@
         }
       }
 
+      async function deleteReservation(id) {
+        if (!confirm("Are you sure you want to delete this reservation?"))
+          return;
+
+        const data = await apiCall(`/reservations/${id}`, "DELETE");
+        if (data && data.success) {
+          alert("Reservation deleted successfully!");
+          loadReservations();
+        } else {
+          alert("Error deleting reservation");
+        }
+      }
+
+      async function updateReservationStatus(id, currentStatus) {
+        const newStatus = currentStatus === "pending" ? "confirmed" : "pending";
+        const data = await apiCall(`/reservations/${id}`, "PUT", {
+          status: newStatus,
+        });
+
+        if (data && data.success) {
+          alert(`Status updated to ${newStatus}!`);
+          loadReservations();
+        } else {
+          alert("Error updating status");
+        }
+      }
+
+      async function deleteContact(id) {
+        if (!confirm("Are you sure you want to delete this contact submission?"))
+          return;
+
+        const data = await apiCall(`/contact/${id}`, "DELETE");
+        if (data && data.success) {
+          alert("Contact deleted successfully!");
+          loadContacts();
+        } else {
+          alert("Error deleting contact");
+        }
+      }
+
+      async function deleteSubscriber(id) {
+        if (!confirm("Are you sure you want to delete this subscriber?"))
+          return;
+
+        const data = await apiCall(`/newsletter/subscribers/${id}`, "DELETE");
+        if (data && data.success) {
+          alert("Subscriber deleted successfully!");
+          loadSubscribers();
+        } else {
+          alert("Error deleting subscriber");
+        }
+      }
+
+      async function deleteEventInquiry(id) {
+        if (!confirm("Are you sure you want to delete this event inquiry?"))
+          return;
+
+        const data = await apiCall(`/events/inquiries/${id}`, "DELETE");
+        if (data && data.success) {
+          alert("Event inquiry deleted successfully!");
+          loadEvents();
+        } else {
+          alert("Error deleting inquiry");
+        }
+      }
+
       async function loadReservations() {
         const tbody = document.getElementById("reservationsBody");
         tbody.innerHTML =
-          '<tr><td colspan="9" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>';
+          '<tr><td colspan="10" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>';
 
         const data = await apiCall("/reservations");
 
@@ -392,6 +465,18 @@
                         <td><span class="badge badge-status bg-${
                           r.status === "pending" ? "warning" : "success"
                         }">${r.status}</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary me-1" onclick="updateReservationStatus(${
+                              r.id
+                            }, '${r.status}')" title="Toggle Status">
+                                <i class="fas fa-check-circle"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteReservation(${
+                              r.id
+                            })" title="Delete">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
                     </tr>
                 `
             )
@@ -400,7 +485,7 @@
             data.reservations.length;
         } else {
           tbody.innerHTML =
-            '<tr><td colspan="9" class="empty-state"><div><i class="fas fa-calendar-times"></i><p>No reservations yet</p></div></td></tr>';
+            '<tr><td colspan="10" class="empty-state"><div><i class="fas fa-calendar-times"></i><p>No reservations yet</p></div></td></tr>';
           document.getElementById("totalReservations").textContent = "0";
         }
       }
@@ -428,9 +513,13 @@
                         <td>${c.subject || "N/A"}</td>
                         <td>${c.message.substring(0, 50)}...</td>
                         <td>${new Date(c.created_at).toLocaleDateString()}</td>
-                        <td><span class="badge badge-status bg-${
-                          c.status === "new" ? "info" : "secondary"
-                        }">${c.status}</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-danger" onclick="deleteContact(${
+                              c.id
+                            })" title="Delete">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
                     </tr>
                 `
             )
@@ -467,9 +556,13 @@
                         <td>${new Date(
                           s.subscribed_at
                         ).toLocaleDateString()}</td>
-                        <td><span class="badge badge-status bg-success">${
-                          s.status
-                        }</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-danger" onclick="deleteSubscriber(${
+                              s.id
+                            })" title="Delete">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
                     </tr>
                 `
             )
@@ -507,9 +600,13 @@
                         <td>${e.event_date}</td>
                         <td>${e.guest_count}</td>
                         <td>${new Date(e.created_at).toLocaleDateString()}</td>
-                        <td><span class="badge badge-status bg-warning">${
-                          e.status
-                        }</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-danger" onclick="deleteEventInquiry(${
+                              e.id
+                            })" title="Delete">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
                     </tr>
                 `
             )

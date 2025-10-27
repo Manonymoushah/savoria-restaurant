@@ -40,6 +40,7 @@ git push -u origin main
 4. **Click** "Deploy from GitHub repo"
 5. **Select** `savoria-restaurant`
 6. **Railway automatically:**
+
    - ✅ Detects Node.js
    - ✅ Runs `npm install`
    - ✅ Starts your server
@@ -76,6 +77,7 @@ Get it at: https://myaccount.google.com/apppasswords
 </details>
 
 **Without these variables:**
+
 - ✅ Reservations still save to database
 - ✅ Forms still work perfectly
 - ✅ Admin dashboard shows all data
@@ -84,6 +86,7 @@ Get it at: https://myaccount.google.com/apppasswords
 ### **Step 4: Get Your URL**
 
 Your site will be at:
+
 ```
 https://savoria-restaurant-production.up.railway.app
 ```
@@ -102,7 +105,7 @@ https://savoria-restaurant-production.up.railway.app
 ✅ Forms show success messages
 ✅ Confirmation numbers generated (SAV-000001, etc.)
 
-*Email notifications require optional email setup (Step 3)*
+_Email notifications require optional email setup (Step 3)_
 
 ---
 
@@ -146,12 +149,14 @@ git push
 ## 💰 Pricing
 
 **Free tier includes:**
+
 - ✅ $5/month credit
 - ✅ 500 hours execution time
 - ✅ Multiple projects
 - ✅ Custom domains
 
 **Your project will use:**
+
 - ~$2-3/month (well within free tier!)
 
 ---
@@ -183,14 +188,17 @@ git push
 ## 🆘 Common Issues
 
 ### **"Application failed to respond"**
+
 - Check logs in Railway dashboard
 - Make sure PORT is not hardcoded (Railway assigns it)
 
 ### **"Database is locked"**
+
 - This won't happen on Railway! ✅
 - SQLite works perfectly
 
 ### **"npm install failed"**
+
 - Make sure package.json is in the root
 - Check that all dependencies are listed
 
