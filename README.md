@@ -1,172 +1,341 @@
-# 🍽️ Savoria Restaurant - Full-Stack Website
+# 🍽️ Savoria Restaurant - Full-Stack Website# 🍽️ Savoria Restaurant - Full-Stack Website
 
-> **An Award-Winning, Full-Featured Restaurant Website with Node.js Backend**
 
-A modern, elegant, and fully responsive **full-stack** restaurant website featuring exceptional design, smooth animations, interactive elements, and a complete working backend with database integration. Built as a class project to showcase advanced web development skills.
 
-## 🚀 Full-Stack Features
+A modern, elegant restaurant website with a complete Node.js backend, SQLite database, and beautiful responsive frontend.> **An Award-Winning, Full-Featured Restaurant Website with Node.js Backend**
 
-### **Frontend** (HTML/CSS/JavaScript)
 
-- Bootstrap 5 responsive design
-- Interactive forms and animations
-- Dark mode toggle
+
+## 🚀 FeaturesA modern, elegant, and fully responsive **full-stack** restaurant website featuring exceptional design, smooth animations, interactive elements, and a complete working backend with database integration. Built as a class project to showcase advanced web development skills.
+
+
+
+- **10 Pages**: Home, About, Menu, Reservations, Gallery, Events, Blog, Contact, 404## 🚀 Full-Stack Features
+
+- **Working Backend**: Node.js + Express + SQLite
+
+- **Real Database**: All reservations, contacts, and subscriptions saved permanently### **Frontend** (HTML/CSS/JavaScript)
+
+- **Admin Dashboard**: View all data in real-time
+
+- **Email Notifications**: Automated confirmation emails- Bootstrap 5 responsive design
+
+- **Responsive Design**: Works on all devices- Interactive forms and animations
+
+- **Dark Mode**: Toggle between light and dark themes- Dark mode toggle
+
 - Multi-page architecture
+
+## 🛠️ Tech Stack
 
 ### **Backend** (Node.js + Express)
 
-- RESTful API endpoints
-- SQLite database for data persistence
-- Email notifications (reservation confirmations)
-- Form processing and validation
+**Frontend:**
 
-### **Database** (SQLite)
+- HTML5, CSS3, JavaScript (ES6+)- RESTful API endpoints
 
-- Reservations management
-- Contact form submissions
-- Newsletter subscribers
-- Event inquiries
+- Bootstrap 5.3.2- SQLite database for data persistence
 
-## ✨ Features
+- Font Awesome 6.5.1- Email notifications (reservation confirmations)
 
-### 🎨 Design & Aesthetics
+- Google Fonts (Playfair Display + Lato)- Form processing and validation
 
-- **Modern Fine Dining Theme**: Elegant color scheme (Gold #d4af37 + Black #1a1a1a)
-- **Glassmorphism Effects**: Frosted glass cards and overlays
-- **Smooth Animations**: AOS (Animate On Scroll) library integration
+
+
+**Backend:**### **Database** (SQLite)
+
+- Node.js
+
+- Express.js- Reservations management
+
+- SQLite3- Contact form submissions
+
+- Nodemailer (email)- Newsletter subscribers
+
+- CORS, Body-Parser- Event inquiries
+
+
+
+## 📦 Quick Start## ✨ Features
+
+
+
+### Development (Local)### 🎨 Design & Aesthetics
+
+
+
+```bash- **Modern Fine Dining Theme**: Elegant color scheme (Gold #d4af37 + Black #1a1a1a)
+
+# Install dependencies- **Glassmorphism Effects**: Frosted glass cards and overlays
+
+npm install- **Smooth Animations**: AOS (Animate On Scroll) library integration
+
 - **Dark Mode Toggle**: Switch between light and dark themes
-- **Parallax Scrolling**: Immersive visual effects on scroll
-- **Responsive Design**: Mobile-first approach, works on all devices
 
-### 📄 Pages
+# Start server- **Parallax Scrolling**: Immersive visual effects on scroll
 
-1. **index.html** - Home Page
+npm start- **Responsive Design**: Mobile-first approach, works on all devices
 
-   - Full-screen hero with automatic slideshow
+
+
+# Open browser### 📄 Pages
+
+http://localhost:3000
+
+```1. **index.html** - Home Page
+
+
+
+### Deploy to Cloud   - Full-screen hero with automatic slideshow
+
    - Featured menu items with hover effects
-   - Quick reservation widget
-   - Upcoming events showcase
-   - Testimonials carousel
+
+```bash   - Quick reservation widget
+
+# Push to GitHub   - Upcoming events showcase
+
+git push origin main   - Testimonials carousel
+
    - Newsletter signup
 
-2. **about.html** - About Us
+# Deploy to Railway (recommended)
+
+# Go to railway.app → New Project → Deploy from GitHub2. **about.html** - About Us
+
+```
 
    - Restaurant story and mission
-   - Interactive timeline of milestones
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.   - Interactive timeline of milestones
+
    - Chef profiles with photos
-   - Awards and recognition
+
+## 📁 Project Structure   - Awards and recognition
+
    - Team photos gallery
 
-3. **menu.html** - Menu
+```
 
-   - Tabbed sections (Appetizers, Mains, Desserts, Beverages, Wine)
-   - Dietary preference filters (Vegan, Gluten-Free, Chef's Pick)
-   - Animated menu items with pricing
-   - Print/download menu functionality
+/restaurant3. **menu.html** - Menu
 
-4. **reservations.html** - Reservations
+  ├── index.html              # Home page
 
-   - Multi-step form with progress indicator
-   - Date picker with unavailable dates
-   - Time slot selection
-   - Real-time form validation
-   - Confirmation modal with confetti animation
-   - Cancellation policy FAQ
+  ├── server.js               # Backend server   - Tabbed sections (Appetizers, Mains, Desserts, Beverages, Wine)
 
-5. **gallery.html** - Photo Gallery
+  ├── admin-dashboard.html    # Admin panel   - Dietary preference filters (Vegan, Gluten-Free, Chef's Pick)
 
-   - Filterable categories (Food, Interior, Events, Team)
-   - Lightbox for full-size viewing (GLightbox)
+  ├── api-test.html           # API testing   - Animated menu items with pricing
+
+  ├── /css   - Print/download menu functionality
+
+  │   └── style.css           # All styles
+
+  ├── /js4. **reservations.html** - Reservations
+
+  │   └── script.js           # Frontend logic + API calls
+
+  ├── /pages   - Multi-step form with progress indicator
+
+  │   ├── about.html   - Date picker with unavailable dates
+
+  │   ├── menu.html   - Time slot selection
+
+  │   ├── reservations.html   - Real-time form validation
+
+  │   ├── gallery.html   - Confirmation modal with confetti animation
+
+  │   ├── events.html   - Cancellation policy FAQ
+
+  │   ├── blog.html
+
+  │   ├── blog-post.html5. **gallery.html** - Photo Gallery
+
+  │   └── contact.html
+
+  └── savoria.db              # SQLite database   - Filterable categories (Food, Interior, Events, Team)
+
+```   - Lightbox for full-size viewing (GLightbox)
+
    - Masonry grid layout
-   - Smooth hover animations
 
-6. **events.html** - Events & Catering
+## 🔌 API Endpoints   - Smooth hover animations
 
-   - Event packages showcase
-   - Inquiry form
-   - Capacity information
-   - Past events highlights
 
-7. **blog.html** - Blog
 
-   - Blog post cards with excerpts
-   - Category badges
+| Endpoint | Method | Description |6. **events.html** - Events & Catering
+
+|----------|--------|-------------|
+
+| `/api/health` | GET | Server health check |   - Event packages showcase
+
+| `/api/reservations` | POST | Create reservation |   - Inquiry form
+
+| `/api/reservations` | GET | Get all reservations |   - Capacity information
+
+| `/api/contact` | POST | Submit contact form |   - Past events highlights
+
+| `/api/contact` | GET | Get all contacts |
+
+| `/api/newsletter/subscribe` | POST | Subscribe newsletter |7. **blog.html** - Blog
+
+| `/api/newsletter/subscribers` | GET | Get all subscribers |
+
+| `/api/events/inquiry` | POST | Submit event inquiry |   - Blog post cards with excerpts
+
+| `/api/events/inquiries` | GET | Get all inquiries |   - Category badges
+
    - Pagination
-   - Read time estimates
 
-8. **blog-post.html** - Individual Blog Post
+## 🎯 Key Features   - Read time estimates
 
-   - Full article layout
-   - Social sharing buttons
-   - Related content suggestions
+
+
+### For Users8. **blog-post.html** - Individual Blog Post
+
+- Make reservations with confirmation numbers
+
+- Contact restaurant via form   - Full article layout
+
+- Subscribe to newsletter   - Social sharing buttons
+
+- Inquire about events and catering   - Related content suggestions
+
+- View menu, gallery, and blog
 
 9. **contact.html** - Contact
 
-   - Contact form with validation
-   - Google Maps integration
-   - Operating hours
-   - FAQ accordion
-   - Parking directions
+### For Admin
 
-10. **404.html** - Custom Error Page
+- View all reservations in dashboard   - Contact form with validation
+
+- See contact submissions   - Google Maps integration
+
+- Manage newsletter subscribers   - Operating hours
+
+- Track event inquiries   - FAQ accordion
+
+- All data stored in SQLite database   - Parking directions
+
+
+
+## 📧 Email Configuration (Optional)10. **404.html** - Custom Error Page
+
     - Playful food-themed puns
-    - Animated design
+
+Create a `.env` file:    - Animated design
+
     - Quick navigation links
 
-### 🚀 Interactive Features
+```env
 
-- **Live Availability Counter**: Real-time table availability simulation
-- **Animated Reserve Button**: Pulse animation effect
+EMAIL_USER=your-email@gmail.com### 🚀 Interactive Features
+
+EMAIL_PASS=your-app-password
+
+RESTAURANT_EMAIL=restaurant@savoria.com- **Live Availability Counter**: Real-time table availability simulation
+
+```- **Animated Reserve Button**: Pulse animation effect
+
 - **Toast Notifications**: Success/error messages for form submissions
-- **Confetti Effect**: Celebration animation for newsletter signup
+
+Get Gmail App Password: https://myaccount.google.com/apppasswords- **Confetti Effect**: Celebration animation for newsletter signup
+
 - **Smooth Scroll**: Animated scrolling between sections
-- **Back to Top Button**: Auto-appearing scroll-to-top button
+
+## 🧪 Testing- **Back to Top Button**: Auto-appearing scroll-to-top button
+
 - **Sticky Navigation**: Shrinks and changes opacity on scroll
-- **Active Page Indicator**: Highlights current page in navigation
-- **Keyboard Navigation**: Full accessibility support
-- **Skip to Content**: Accessibility skip link
 
-### 🛠️ Technologies Used
+### Test API- **Active Page Indicator**: Highlights current page in navigation
 
-#### Frontend Technologies
+```bash- **Keyboard Navigation**: Full accessibility support
 
-- **HTML5**: Semantic markup
-- **CSS3**: Custom properties, animations, flexbox, grid
-- **JavaScript (ES6+)**: Vanilla JS with async/await for API calls
+# Open API test page- **Skip to Content**: Accessibility skip link
+
+http://localhost:3000/api-test.html
+
+```### 🛠️ Technologies Used
+
+
+
+### Test Admin Dashboard#### Frontend Technologies
+
+```bash
+
+# Open admin panel- **HTML5**: Semantic markup
+
+http://localhost:3000/admin-dashboard.html- **CSS3**: Custom properties, animations, flexbox, grid
+
+```- **JavaScript (ES6+)**: Vanilla JS with async/await for API calls
+
 - **Bootstrap 5.3.2**: Responsive grid and components
 
-#### Backend Technologies
+### Test Database
 
-- **Node.js**: JavaScript runtime
-- **Express.js**: Web application framework
+```bash#### Backend Technologies
+
+# View database
+
+sqlite3 savoria.db "SELECT * FROM reservations;"- **Node.js**: JavaScript runtime
+
+```- **Express.js**: Web application framework
+
 - **SQLite3**: Lightweight database
-- **Nodemailer**: Email sending
+
+## 📚 Documentation- **Nodemailer**: Email sending
+
 - **CORS**: Cross-origin resource sharing
-- **Body-Parser**: Request body parsing
 
-#### Libraries & Plugins
+- [DEPLOYMENT.md](DEPLOYMENT.md) - How to deploy to Railway/Vercel- **Body-Parser**: Request body parsing
 
-- **Font Awesome**: Icons (v6.5.1)
+- [BACKEND-README.md](BACKEND-README.md) - Backend API documentation
+
+- [PRESENTATION-GUIDE.md](PRESENTATION-GUIDE.md) - Class presentation tips#### Libraries & Plugins
+
+
+
+## 🎓 Class Project- **Font Awesome**: Icons (v6.5.1)
+
 - **Google Fonts**: Playfair Display + Lato
-- **Flatpickr**: Date picker for reservations
-- **GLightbox**: Image lightbox gallery
-- **Bootstrap Bundle**: Includes Popper.js
 
-### 📁 Project Structure
+This full-stack application demonstrates:- **Flatpickr**: Date picker for reservations
 
-```
+- ✅ Modern web development with Node.js- **GLightbox**: Image lightbox gallery
+
+- ✅ RESTful API design- **Bootstrap Bundle**: Includes Popper.js
+
+- ✅ Database integration (CRUD operations)
+
+- ✅ Frontend-backend communication### 📁 Project Structure
+
+- ✅ Responsive design
+
+- ✅ Production deployment```
+
 /restaurant
-  ├── index.html              # Home page
+
+## 📄 License  ├── index.html              # Home page
+
   ├── 404.html                # Custom error page
-  ├── server.js               # Node.js backend server ⭐ NEW
+
+MIT License - Feel free to use for your own projects!  ├── server.js               # Node.js backend server ⭐ NEW
+
   ├── package.json            # Node dependencies ⭐ NEW
-  ├── .env.example            # Environment variables template ⭐ NEW
+
+## 🙏 Acknowledgments  ├── .env.example            # Environment variables template ⭐ NEW
+
   ├── .gitignore              # Git ignore file ⭐ NEW
-  ├── start.sh                # Quick start script ⭐ NEW
+
+Built with ❤️ as a class project to showcase full-stack web development skills.  ├── start.sh                # Quick start script ⭐ NEW
+
   ├── api-test.html           # API testing page ⭐ NEW
-  ├── README.md               # This file
+
+---  ├── README.md               # This file
+
   ├── BACKEND-README.md       # Backend documentation ⭐ NEW
-  ├── PRESENTATION-GUIDE.md   # Class presentation guide
+
+**Live Demo:** [Coming soon - deploy to see your URL here!]  ├── PRESENTATION-GUIDE.md   # Class presentation guide
+
   ├── /css
   │   └── style.css           # All custom styles (1497 lines)
   ├── /js

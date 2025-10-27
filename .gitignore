@@ -6,10 +6,10 @@ yarn.lock
 # Environment variables
 .env
 
-# Database
-*.db
-*.sqlite
-*.sqlite3
+# Database (keep savoria.db but ignore SQLite temp files)
+*.db-journal
+*.db-wal
+*.db-shm
 
 # Logs
 logs/
