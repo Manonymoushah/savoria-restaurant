@@ -48,7 +48,14 @@ git push -u origin main
 7. **Wait 2-3 minutes** ☕
 8. **🎉 Your site is LIVE!**
 
-### **Step 3: Add Environment Variables**
+**That's it! Skip to Step 4 to get your URL.** ⬇️
+
+### **Step 3: Environment Variables (OPTIONAL - Skip for Now!)**
+
+**Your site works 100% without these!** Only add if you want email notifications.
+
+<details>
+<summary>Click to expand if you want to add email functionality later</summary>
 
 1. **Click** your project
 2. **Go to** "Variables" tab
@@ -63,6 +70,17 @@ NODE_ENV=production
 
 4. **Click** "Deploy" to restart with new variables
 
+**Note:** EMAIL_PASS requires a Gmail App Password (not your regular password).
+Get it at: https://myaccount.google.com/apppasswords
+
+</details>
+
+**Without these variables:**
+- ✅ Reservations still save to database
+- ✅ Forms still work perfectly
+- ✅ Admin dashboard shows all data
+- ❌ No confirmation emails sent (that's okay!)
+
 ### **Step 4: Get Your URL**
 
 Your site will be at:
@@ -74,14 +92,17 @@ https://savoria-restaurant-production.up.railway.app
 
 ---
 
-## ✅ What Works on Railway
+## ✅ What Works on Railway (Without Email Setup)
 
 ✅ All reservations save to database
-✅ Contact forms work
+✅ Contact forms work perfectly
 ✅ Newsletter subscriptions persist
 ✅ Admin dashboard shows real data
 ✅ SQLite database keeps all data
-✅ Email notifications work (if configured)
+✅ Forms show success messages
+✅ Confirmation numbers generated (SAV-000001, etc.)
+
+*Email notifications require optional email setup (Step 3)*
 
 ---
 
