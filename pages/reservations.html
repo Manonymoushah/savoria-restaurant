@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Reserve your table at Savoria Restaurant. Book online for an unforgettable dining experience."
+    />
+    <title>Reservations - Savoria Restaurant</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Flatpickr for date picker -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+
+    <style>
+      .reservation-hero {
+        height: 50vh;
+        margin-top: 76px;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&q=80");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+
+      .progress-steps {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 3rem;
+        position: relative;
+      }
+
+      .progress-steps::before {
+        content: "";
+        position: absolute;
+        top: 20px;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: #e0e0e0;
+        z-index: 0;
+      }
+
+      .progress-line {
+        position: absolute;
+        top: 20px;
+        left: 0;
+        height: 4px;
+        background: var(--primary-color);
+        transition: width 0.3s ease;
+        z-index: 1;
+      }
+
+      .step {
+        flex: 1;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+      }
+
+      .step-circle {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #e0e0e0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+        transition: all 0.3s;
+      }
+
+      .step.active .step-circle {
+        background: var(--primary-color);
+        color: var(--secondary-color);
+        transform: scale(1.2);
+      }
+
+      .step.completed .step-circle {
+        background: #27ae60;
+        color: white;
+      }
+
+      .form-step {
+        display: none;
+      }
+
+      .form-step.active {
+        display: block;
+        animation: fadeIn 0.5s;
+      }
+
+      .time-slot {
+        padding: 1rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-align: center;
+      }
+
+      .time-slot:hover {
+        border-color: var(--primary-color);
+        background: rgba(212, 175, 55, 0.1);
+      }
+
+      .time-slot.selected {
+        border-color: var(--primary-color);
+        background: var(--primary-color);
+        color: var(--secondary-color);
+      }
+
+      .time-slot.unavailable {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .confirmation-icon {
+        font-size: 5rem;
+        color: #27ae60;
+        animation: scaleIn 0.5s;
+      }
+
+      @keyframes scaleIn {
+        from {
+          transform: scale(0);
+        }
+        to {
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button id="darkModeToggle" class="dark-mode-toggle">
+      <i class="fas fa-moon"></i>
+    </button>
+
+    <nav
+      class="navbar navbar-expand-lg navbar-dark fixed-top scrolled"
+      id="mainNav"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="../index.html"
+          ><i class="fas fa-utensils"></i> SAVORIA</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="menu.html">Menu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="gallery.html">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="events.html">Events</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+          <a
+            href="reservations.html"
+            class="btn btn-primary reserve-btn pulse-animation"
+          >
+            <i class="fas fa-calendar-check"></i> Reserve Now
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <section class="reservation-hero">
+      <div class="container text-center">
+        <h1 class="display-3 fw-bold mb-3">Reserve Your Table</h1>
+        <p
+          class="lead"
+          style="
+            color: #d4af37 !important;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+          "
+        >
+          An Unforgettable Experience Awaits
+        </p>
+      </div>
+    </section>
+
+    <section class="py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <!-- Progress Steps -->
+            <div class="progress-steps">
+              <div
+                class="progress-line"
+                id="progressLine"
+                style="width: 0%"
+              ></div>
+              <div class="step active" data-step="1">
+                <div class="step-circle"><i class="fas fa-calendar"></i></div>
+                <div class="step-label">Date & Time</div>
+              </div>
+              <div class="step" data-step="2">
+                <div class="step-circle"><i class="fas fa-users"></i></div>
+                <div class="step-label">Party Size</div>
+              </div>
+              <div class="step" data-step="3">
+                <div class="step-circle"><i class="fas fa-user"></i></div>
+                <div class="step-label">Your Details</div>
+              </div>
+              <div class="step" data-step="4">
+                <div class="step-circle"><i class="fas fa-check"></i></div>
+                <div class="step-label">Confirm</div>
+              </div>
+            </div>
+
+            <!-- Multi-step Form -->
+            <form id="reservationForm">
+              <!-- Step 1: Date & Time -->
+              <div class="form-step active" data-step="1">
+                <h3 class="mb-4">Select Date & Time</h3>
+                <div class="mb-4">
+                  <label class="form-label">Choose a Date</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    id="reservationDate"
+                    placeholder="Select date"
+                    required
+                  />
+                </div>
+                <div class="mb-4">
+                  <label class="form-label">Available Time Slots</label>
+                  <div class="row g-3" id="timeSlots">
+                    <div class="col-md-3 col-6">
+                      <div class="time-slot" data-time="17:00">5:00 PM</div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                      <div class="time-slot" data-time="17:30">5:30 PM</div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                      <div class="time-slot" data-time="18:00">6:00 PM</div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                      <div class="time-slot" data-time="18:30">6:30 PM</div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                      <div class="time-slot" data-time="19:00">7:00 PM</div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                      <div class="time-slot" data-time="19:30">7:30 PM</div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                      <div class="time-slot" data-time="20:00">8:00 PM</div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                      <div class="time-slot" data-time="20:30">8:30 PM</div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                      <div class="time-slot" data-time="21:00">9:00 PM</div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                      <div class="time-slot unavailable" data-time="21:30">
+                        9:30 PM<br /><small>Full</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-primary btn-lg"
+                  onclick="nextStep()"
+                >
+                  Next <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+
+              <!-- Step 2: Party Size -->
+              <div class="form-step" data-step="2">
+                <h3 class="mb-4">Party Size</h3>
+                <div class="mb-4">
+                  <label class="form-label">Number of Guests</label>
+                  <select
+                    class="form-select form-select-lg"
+                    id="partySize"
+                    required
+                  >
+                    <option value="">Select number of guests</option>
+                    <option value="1">1 Guest</option>
+                    <option value="2">2 Guests</option>
+                    <option value="3">3 Guests</option>
+                    <option value="4">4 Guests</option>
+                    <option value="5">5 Guests</option>
+                    <option value="6">6 Guests</option>
+                    <option value="7">7 Guests</option>
+                    <option value="8">8 Guests</option>
+                    <option value="9+">9+ Guests (We'll contact you)</option>
+                  </select>
+                </div>
+                <div class="mb-4">
+                  <label class="form-label">Special Occasion? (Optional)</label>
+                  <select class="form-select form-select-lg" id="occasion">
+                    <option value="">None</option>
+                    <option value="birthday">Birthday</option>
+                    <option value="anniversary">Anniversary</option>
+                    <option value="business">Business Dinner</option>
+                    <option value="other">Other Celebration</option>
+                  </select>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary me-2"
+                  onclick="prevStep()"
+                >
+                  <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary btn-lg"
+                  onclick="nextStep()"
+                >
+                  Next <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+
+              <!-- Step 3: Contact Details -->
+              <div class="form-step" data-step="3">
+                <h3 class="mb-4">Your Contact Information</h3>
+                <div class="row g-3 mb-4">
+                  <div class="col-md-6">
+                    <label class="form-label">First Name</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="firstName"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Last Name</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="lastName"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="mb-4">
+                  <label class="form-label">Email Address</label>
+                  <input
+                    type="email"
+                    class="form-control form-control-lg"
+                    id="email"
+                    required
+                  />
+                </div>
+                <div class="mb-4">
+                  <label class="form-label">Phone Number</label>
+                  <input
+                    type="tel"
+                    class="form-control form-control-lg"
+                    id="phone"
+                    required
+                  />
+                </div>
+                <div class="mb-4">
+                  <label class="form-label">Special Requests (Optional)</label>
+                  <textarea
+                    class="form-control"
+                    id="requests"
+                    rows="3"
+                    placeholder="Dietary restrictions, seating preferences, etc."
+                  ></textarea>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary me-2"
+                  onclick="prevStep()"
+                >
+                  <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary btn-lg"
+                  onclick="nextStep()"
+                >
+                  Review <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+
+              <!-- Step 4: Confirmation -->
+              <div class="form-step" data-step="4">
+                <div id="reviewSection">
+                  <h3 class="mb-4">Review Your Reservation</h3>
+                  <div class="card p-4 mb-4">
+                    <h5 class="mb-3">
+                      <i class="fas fa-calendar text-primary"></i> Reservation
+                      Details
+                    </h5>
+                    <p><strong>Date:</strong> <span id="reviewDate"></span></p>
+                    <p><strong>Time:</strong> <span id="reviewTime"></span></p>
+                    <p>
+                      <strong>Party Size:</strong>
+                      <span id="reviewParty"></span>
+                    </p>
+                    <p>
+                      <strong>Occasion:</strong>
+                      <span id="reviewOccasion"></span>
+                    </p>
+                    <hr />
+                    <h5 class="mb-3">
+                      <i class="fas fa-user text-primary"></i> Contact
+                      Information
+                    </h5>
+                    <p><strong>Name:</strong> <span id="reviewName"></span></p>
+                    <p>
+                      <strong>Email:</strong> <span id="reviewEmail"></span>
+                    </p>
+                    <p>
+                      <strong>Phone:</strong> <span id="reviewPhone"></span>
+                    </p>
+                    <p>
+                      <strong>Special Requests:</strong>
+                      <span id="reviewRequests"></span>
+                    </p>
+                  </div>
+                  <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    <strong>Cancellation Policy:</strong>
+                    Please notify us at least 24 hours in advance if you need to
+                    cancel or modify your reservation.
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary me-2"
+                    onclick="prevStep()"
+                  >
+                    <i class="fas fa-arrow-left"></i> Back
+                  </button>
+                  <button type="submit" class="btn btn-primary btn-lg">
+                    <i class="fas fa-check"></i> Confirm Reservation
+                  </button>
+                </div>
+
+                <div
+                  id="successSection"
+                  style="display: none"
+                  class="text-center py-5"
+                >
+                  <div class="confirmation-icon mb-4">
+                    <i class="fas fa-check-circle"></i>
+                  </div>
+                  <h2 class="mb-3">Reservation Confirmed!</h2>
+                  <p class="lead mb-4">
+                    Thank you for choosing Savoria. We can't wait to serve you!
+                  </p>
+                  <p>
+                    A confirmation email has been sent to
+                    <strong id="confirmEmail"></strong>
+                  </p>
+                  <p class="mb-4">
+                    Confirmation Number:
+                    <strong class="text-primary"
+                      >#SAV-<span id="confirmNumber"></span
+                    ></strong>
+                  </p>
+                  <a href="../index.html" class="btn btn-primary"
+                    >Back to Home</a
+                  >
+                  <a href="menu.html" class="btn btn-outline-primary"
+                    >View Menu</a
+                  >
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-5 bg-light">
+      <div class="container">
+        <h2 class="text-center mb-5">Reservation FAQs</h2>
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="accordion" id="faqAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq1"
+                  >
+                    How far in advance can I make a reservation?
+                  </button>
+                </h2>
+                <div
+                  id="faq1"
+                  class="accordion-collapse collapse show"
+                  data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body">
+                    You can make reservations up to 60 days in advance. We
+                    recommend booking at least 2 weeks ahead for weekend
+                    dinners.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq2"
+                  >
+                    What is your cancellation policy?
+                  </button>
+                </h2>
+                <div
+                  id="faq2"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body">
+                    Please provide at least 24 hours notice for cancellations.
+                    For parties of 6 or more, we require 48 hours notice.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq3"
+                  >
+                    Do you accommodate dietary restrictions?
+                  </button>
+                </h2>
+                <div
+                  id="faq3"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body">
+                    Absolutely! Please inform us of any dietary restrictions or
+                    allergies when making your reservation.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="text-center py-4">
+          <p>&copy; 2025 Savoria Restaurant. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="../js/script.js"></script>
+    <script>
+      let currentStep = 1;
+      let selectedTime = "";
+      let selectedDate = "";
+
+      // Initialize date picker
+      flatpickr("#reservationDate", {
+        minDate: "today",
+        maxDate: new Date().fp_incr(60),
+        dateFormat: "Y-m-d",
+        onChange: function (selectedDates, dateStr) {
+          selectedDate = dateStr;
+        },
+      });
+
+      // Time slot selection
+      document
+        .querySelectorAll(".time-slot:not(.unavailable)")
+        .forEach((slot) => {
+          slot.addEventListener("click", function () {
+            document
+              .querySelectorAll(".time-slot")
+              .forEach((s) => s.classList.remove("selected"));
+            this.classList.add("selected");
+            selectedTime = this.getAttribute("data-time");
+          });
+        });
+
+      function nextStep() {
+        if (currentStep === 1 && (!selectedDate || !selectedTime)) {
+          alert("Please select both date and time");
+          return;
+        }
+
+        if (currentStep === 2) {
+          const partySize = document.getElementById("partySize").value;
+          if (!partySize) {
+            alert("Please select party size");
+            return;
+          }
+        }
+
+        if (currentStep === 3) {
+          if (!validateStep3()) return;
+          populateReview();
+        }
+
+        document
+          .querySelector(`.form-step[data-step="${currentStep}"]`)
+          .classList.remove("active");
+        document
+          .querySelector(`.step[data-step="${currentStep}"]`)
+          .classList.add("completed");
+        document
+          .querySelector(`.step[data-step="${currentStep}"]`)
+          .classList.remove("active");
+
+        currentStep++;
+
+        document
+          .querySelector(`.form-step[data-step="${currentStep}"]`)
+          .classList.add("active");
+        document
+          .querySelector(`.step[data-step="${currentStep}"]`)
+          .classList.add("active");
+
+        updateProgressBar();
+      }
+
+      function prevStep() {
+        document
+          .querySelector(`.form-step[data-step="${currentStep}"]`)
+          .classList.remove("active");
+        document
+          .querySelector(`.step[data-step="${currentStep}"]`)
+          .classList.remove("active");
+
+        currentStep--;
+
+        document
+          .querySelector(`.form-step[data-step="${currentStep}"]`)
+          .classList.add("active");
+        document
+          .querySelector(`.step[data-step="${currentStep}"]`)
+          .classList.add("active");
+        document
+          .querySelector(`.step[data-step="${currentStep}"]`)
+          .classList.remove("completed");
+
+        updateProgressBar();
+      }
+
+      function updateProgressBar() {
+        const progress = ((currentStep - 1) / 3) * 100;
+        document.getElementById("progressLine").style.width = progress + "%";
+      }
+
+      function validateStep3() {
+        const firstName = document.getElementById("firstName").value.trim();
+        const lastName = document.getElementById("lastName").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+
+        if (!firstName || !lastName || !email || !phone) {
+          alert("Please fill in all required fields");
+          return false;
+        }
+
+        if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+          alert("Please enter a valid email address");
+          return false;
+        }
+
+        return true;
+      }
+
+      function populateReview() {
+        document.getElementById("reviewDate").textContent = selectedDate;
+        document.getElementById("reviewTime").textContent = selectedTime;
+        document.getElementById("reviewParty").textContent =
+          document.getElementById("partySize").value + " guests";
+        document.getElementById("reviewOccasion").textContent =
+          document.getElementById("occasion").value || "None";
+        document.getElementById("reviewName").textContent =
+          document.getElementById("firstName").value +
+          " " +
+          document.getElementById("lastName").value;
+        document.getElementById("reviewEmail").textContent =
+          document.getElementById("email").value;
+        document.getElementById("reviewPhone").textContent =
+          document.getElementById("phone").value;
+        document.getElementById("reviewRequests").textContent =
+          document.getElementById("requests").value || "None";
+      }
+
+      document
+        .getElementById("reservationForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          // Collect form data
+          const formData = {
+            name:
+              document.getElementById("firstName").value +
+              " " +
+              document.getElementById("lastName").value,
+            email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value,
+            date: selectedDate,
+            time: selectedTime,
+            guests: parseInt(document.getElementById("partySize").value),
+            occasion: document.getElementById("occasion").value,
+            special_requests: document.getElementById("requests").value,
+          };
+
+          try {
+            // Show loading state
+            const submitBtn = document.querySelector(
+              '#reviewSection button[type="submit"]'
+            );
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML =
+              '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+            submitBtn.disabled = true;
+
+            // Submit to backend API
+            const result = await window.SavoriaUtils.submitReservation(
+              formData
+            );
+
+            if (result && result.success) {
+              // Use the confirmation number from backend
+              document.getElementById("confirmNumber").textContent =
+                result.confirmationNumber;
+              document.getElementById("confirmEmail").textContent =
+                formData.email;
+
+              // Show success section
+              document.getElementById("reviewSection").style.display = "none";
+              document.getElementById("successSection").style.display = "block";
+
+              // Show confetti
+              if (typeof window.SavoriaUtils.createConfetti === "function") {
+                window.SavoriaUtils.createConfetti();
+              }
+            } else {
+              alert("Failed to create reservation. Please try again.");
+              submitBtn.innerHTML = originalText;
+              submitBtn.disabled = false;
+            }
+          } catch (error) {
+            console.error("Reservation error:", error);
+            alert("Failed to create reservation. Please try again.");
+            // Restore button
+            const submitBtn = document.querySelector(
+              '#reviewSection button[type="submit"]'
+            );
+            submitBtn.innerHTML = "Confirm Reservation";
+            submitBtn.disabled = false;
+          }
+
+          // Show confetti (fallback)
+          if (window.SavoriaUtils && window.SavoriaUtils.createConfetti) {
+            window.SavoriaUtils.createConfetti();
+          }
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Savoria - Where Culinary Art Meets Unforgettable Experiences. Fine dining restaurant offering exceptional cuisine and ambiance."
+    />
+    <meta
+      name="keywords"
+      content="restaurant, fine dining, cuisine, reservations, catering"
+    />
+    <meta name="author" content="Savoria Restaurant" />
+
+    <!-- Schema.org markup for Restaurant -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Savoria",
+        "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4",
+        "description": "Where Culinary Art Meets Unforgettable Experiences",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "123 Gourmet Boulevard",
+          "addressLocality": "New York",
+          "addressRegion": "NY",
+          "postalCode": "10001"
+        },
+        "telephone": "+1-555-SAVORIA",
+        "servesCuisine": ["Contemporary", "International"],
+        "priceRange": "$$$",
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+            "opens": "17:00",
+            "closes": "22:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Friday", "Saturday"],
+            "opens": "17:00",
+            "closes": "23:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Sunday",
+            "opens": "16:00",
+            "closes": "21:00"
+          }
+        ]
+      }
+    </script>
+
+    <title>Savoria - Where Culinary Art Meets Unforgettable Experiences</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- AOS (Animate On Scroll) -->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Dark Mode Toggle -->
+    <button
+      id="darkModeToggle"
+      class="dark-mode-toggle"
+      aria-label="Toggle dark mode"
+    >
+      <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <i class="fas fa-utensils"></i> SAVORIA
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pages/about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pages/menu.html">Menu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pages/gallery.html">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pages/events.html">Events</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pages/blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pages/contact.html">Contact</a>
+            </li>
+          </ul>
+          <a
+            href="pages/reservations.html"
+            class="btn btn-primary reserve-btn pulse-animation"
+          >
+            <i class="fas fa-calendar-check"></i> Reserve Now
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section with Slideshow -->
+    <section class="hero-section" id="hero">
+      <div class="hero-slideshow">
+        <div
+          class="hero-slide active"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&q=80');
+          "
+        >
+          <div class="hero-overlay"></div>
+        </div>
+        <div
+          class="hero-slide"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80');
+          "
+        >
+          <div class="hero-overlay"></div>
+        </div>
+        <div
+          class="hero-slide"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=1920&q=80');
+          "
+        >
+          <div class="hero-overlay"></div>
+        </div>
+      </div>
+
+      <div class="hero-content">
+        <div class="container text-center">
+          <h1 class="hero-title" data-aos-duration="1000">
+            Welcome to Savoria
+          </h1>
+          <p
+            class="hero-subtitle"
+           
+           
+            data-aos-duration="1000"
+          >
+            Where Culinary Art Meets Unforgettable Experiences
+          </p>
+          <div
+            class="hero-buttons"
+           
+           
+            data-aos-duration="1000"
+          >
+            <a href="pages/menu.html" class="btn btn-light btn-lg me-3">
+              <i class="fas fa-book-open"></i> View Menu
+            </a>
+            <a
+              href="pages/reservations.html"
+              class="btn btn-outline-light btn-lg"
+            >
+              <i class="fas fa-calendar-alt"></i> Book a Table
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Down Indicator -->
+      <div class="scroll-indicator">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </section>
+
+    <!-- Live Availability Banner -->
+    <div class="availability-banner">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <i class="fas fa-check-circle"></i>
+            <span class="availability-text">
+              <strong id="availableTables">12</strong> tables available tonight
+            </span>
+          </div>
+          <div class="col-md-4 text-md-end">
+            <a href="pages/reservations.html" class="btn btn-sm btn-light"
+              >Reserve Now</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Welcome Section -->
+    <section class="welcome-section py-5">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <div class="welcome-image">
+              <img
+                src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80"
+                alt="Restaurant interior"
+                class="img-fluid rounded shadow-lg"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="welcome-content">
+              <span class="section-label">Our Story</span>
+              <h2 class="section-title">A Journey Through Flavors</h2>
+              <p class="section-text">
+                At Savoria, we believe that dining is more than just a meal—it's
+                an experience that engages all your senses. Since 2015, we've
+                been crafting exceptional dishes that blend traditional
+                techniques with modern innovation.
+              </p>
+              <p class="section-text">
+                Our award-winning chefs source only the finest ingredients,
+                working with local farmers and artisans to bring you dishes that
+                celebrate seasonality and sustainability.
+              </p>
+              <div class="welcome-stats mt-4">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="stat-item">
+                      <h3 class="stat-number">10+</h3>
+                      <p class="stat-label">Years</p>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="stat-item">
+                      <h3 class="stat-number">50+</h3>
+                      <p class="stat-label">Dishes</p>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="stat-item">
+                      <h3 class="stat-number">15</h3>
+                      <p class="stat-label">Awards</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a href="pages/about.html" class="btn btn-primary mt-4">
+                Learn More About Us
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Menu Items -->
+    <section class="featured-menu py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="section-label">Signature Dishes</span>
+          <h2 class="section-title">Chef's Recommendations</h2>
+          <p class="section-subtitle">Discover our most celebrated creations</p>
+        </div>
+
+        <div class="row g-4">
+          <!-- Featured Dish 1 -->
+          <div
+            class="col-lg-3 col-md-6"
+           
+           
+          >
+            <div class="menu-card">
+              <div class="menu-card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80"
+                  alt="Truffle Risotto"
+                  class="img-fluid"
+                />
+                <div class="menu-card-badge">
+                  <i class="fas fa-star"></i> Chef's Pick
+                </div>
+              </div>
+              <div class="menu-card-body">
+                <h3 class="menu-card-title">Truffle Risotto</h3>
+                <p class="menu-card-description">
+                  Creamy arborio rice with black truffle, parmesan, and wild
+                  mushrooms
+                </p>
+                <div class="menu-card-footer">
+                  <span class="menu-card-price">$34</span>
+                  <a
+                    href="pages/menu.html"
+                    class="btn btn-sm btn-outline-primary"
+                    >View Details</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Featured Dish 2 -->
+          <div
+            class="col-lg-3 col-md-6"
+           
+           
+          >
+            <div class="menu-card">
+              <div class="menu-card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1558030006-450675393462?w=400&q=80"
+                  alt="Grilled Salmon"
+                  class="img-fluid"
+                />
+                <div class="menu-card-badge badge-new">New</div>
+              </div>
+              <div class="menu-card-body">
+                <h3 class="menu-card-title">Citrus Glazed Salmon</h3>
+                <p class="menu-card-description">
+                  Pan-seared Atlantic salmon with citrus reduction and seasonal
+                  vegetables
+                </p>
+                <div class="menu-card-footer">
+                  <span class="menu-card-price">$42</span>
+                  <a
+                    href="pages/menu.html"
+                    class="btn btn-sm btn-outline-primary"
+                    >View Details</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Featured Dish 3 -->
+          <div
+            class="col-lg-3 col-md-6"
+           
+           
+          >
+            <div class="menu-card">
+              <div class="menu-card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400&q=80"
+                  alt="Wagyu Steak"
+                  class="img-fluid"
+                />
+                <div class="menu-card-badge">
+                  <i class="fas fa-fire"></i> Popular
+                </div>
+              </div>
+              <div class="menu-card-body">
+                <h3 class="menu-card-title">Wagyu Beef Tenderloin</h3>
+                <p class="menu-card-description">
+                  Premium A5 Wagyu with rosemary butter and truffle mashed
+                  potatoes
+                </p>
+                <div class="menu-card-footer">
+                  <span class="menu-card-price">$68</span>
+                  <a
+                    href="pages/menu.html"
+                    class="btn btn-sm btn-outline-primary"
+                    >View Details</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Featured Dish 4 -->
+          <div
+            class="col-lg-3 col-md-6"
+           
+           
+          >
+            <div class="menu-card">
+              <div class="menu-card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&q=80"
+                  alt="Chocolate Soufflé"
+                  class="img-fluid"
+                />
+                <div class="menu-card-badge badge-vegan">
+                  <i class="fas fa-leaf"></i> GF
+                </div>
+              </div>
+              <div class="menu-card-body">
+                <h3 class="menu-card-title">Dark Chocolate Soufflé</h3>
+                <p class="menu-card-description">
+                  Warm Belgian chocolate soufflé with vanilla bean ice cream
+                </p>
+                <div class="menu-card-footer">
+                  <span class="menu-card-price">$16</span>
+                  <a
+                    href="pages/menu.html"
+                    class="btn btn-sm btn-outline-primary"
+                    >View Details</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-5">
+          <a href="pages/menu.html" class="btn btn-primary btn-lg">
+            View Full Menu <i class="fas fa-arrow-right ms-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Reservation Widget -->
+    <section class="quick-reservation parallax-section">
+      <div class="container">
+        <div class="reservation-widget glass-effect">
+          <h2 class="text-center mb-4">Quick Reservation</h2>
+          <form id="quickReservationForm" class="row g-3">
+            <div class="col-md-3">
+              <input type="date" class="form-control" id="quickDate" required />
+            </div>
+            <div class="col-md-3">
+              <select class="form-select" id="quickTime" required>
+                <option value="">Time</option>
+                <option value="17:00">5:00 PM</option>
+                <option value="17:30">5:30 PM</option>
+                <option value="18:00">6:00 PM</option>
+                <option value="18:30">6:30 PM</option>
+                <option value="19:00">7:00 PM</option>
+                <option value="19:30">7:30 PM</option>
+                <option value="20:00">8:00 PM</option>
+                <option value="20:30">8:30 PM</option>
+                <option value="21:00">9:00 PM</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <select class="form-select" id="quickGuests" required>
+                <option value="">Guests</option>
+                <option value="1">1 Guest</option>
+                <option value="2">2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4">4 Guests</option>
+                <option value="5">5 Guests</option>
+                <option value="6">6 Guests</option>
+                <option value="7+">7+ Guests</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <button type="submit" class="btn btn-primary w-100">
+                <i class="fas fa-check"></i> Book Now
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Special Events/Upcoming Events -->
+    <section class="events-section py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="section-label">What's Happening</span>
+          <h2 class="section-title">Upcoming Events & Specials</h2>
+        </div>
+
+        <div class="row g-4">
+          <!-- Event 1 -->
+          <div class="col-lg-4">
+            <div class="event-card">
+              <div class="event-date">
+                <span class="event-day">25</span>
+                <span class="event-month">OCT</span>
+              </div>
+              <div class="event-image">
+                <img
+                  src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600&q=80"
+                  alt="Wine Tasting Event"
+                  class="img-fluid"
+                />
+              </div>
+              <div class="event-body">
+                <h3 class="event-title">Wine Tasting Evening</h3>
+                <p class="event-description">
+                  Join our sommelier for an exclusive tasting of rare vintages
+                  from our cellar.
+                </p>
+                <div class="event-meta">
+                  <span><i class="far fa-clock"></i> 7:00 PM - 9:00 PM</span>
+                  <span><i class="fas fa-dollar-sign"></i> $85 per person</span>
+                </div>
+                <a
+                  href="pages/events.html"
+                  class="btn btn-outline-primary w-100 mt-3"
+                >
+                  Learn More
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Event 2 -->
+          <div class="col-lg-4">
+            <div class="event-card">
+              <div class="event-date">
+                <span class="event-day">28</span>
+                <span class="event-month">OCT</span>
+              </div>
+              <div class="event-image">
+                <img
+                  src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600&q=80"
+                  alt="Chef's Table"
+                  class="img-fluid"
+                />
+              </div>
+              <div class="event-body">
+                <h3 class="event-title">Chef's Table Experience</h3>
+                <p class="event-description">
+                  Intimate 8-course tasting menu prepared tableside by Chef
+                  Alessandro.
+                </p>
+                <div class="event-meta">
+                  <span><i class="far fa-clock"></i> 6:30 PM</span>
+                  <span><i class="fas fa-users"></i> Limited to 8 guests</span>
+                </div>
+                <a
+                  href="pages/events.html"
+                  class="btn btn-outline-primary w-100 mt-3"
+                >
+                  Learn More
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Event 3 -->
+          <div class="col-lg-4">
+            <div class="event-card">
+              <div class="event-date">
+                <span class="event-day">31</span>
+                <span class="event-month">OCT</span>
+              </div>
+              <div class="event-image">
+                <img
+                  src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?w=600&q=80"
+                  alt="Live Jazz Night"
+                  class="img-fluid"
+                />
+              </div>
+              <div class="event-body">
+                <h3 class="event-title">Live Jazz & Dinner</h3>
+                <p class="event-description">
+                  Enjoy exceptional cuisine while listening to smooth jazz from
+                  local artists.
+                </p>
+                <div class="event-meta">
+                  <span><i class="far fa-clock"></i> 7:30 PM - 10:30 PM</span>
+                  <span><i class="fas fa-music"></i> No cover charge</span>
+                </div>
+                <a
+                  href="pages/events.html"
+                  class="btn btn-outline-primary w-100 mt-3"
+                >
+                  Learn More
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="section-label">Testimonials</span>
+          <h2 class="section-title">What Our Guests Say</h2>
+        </div>
+
+        <div
+          id="testimonialsCarousel"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <!-- Testimonial 1 -->
+            <div class="carousel-item active">
+              <div class="testimonial-card">
+                <div class="stars mb-3">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">
+                  "An absolutely extraordinary dining experience! Every dish was
+                  a masterpiece, and the service was impeccable. The truffle
+                  risotto is simply the best I've ever had. We'll definitely be
+                  returning for our anniversary next year."
+                </p>
+                <div class="testimonial-author">
+                  <img
+                    src="https://i.pravatar.cc/100?img=1"
+                    alt="Sarah Johnson"
+                    class="testimonial-avatar"
+                  />
+                  <div>
+                    <h5 class="testimonial-name">Sarah Johnson</h5>
+                    <p class="testimonial-role">Food Critic, NY Times</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="carousel-item">
+              <div class="testimonial-card">
+                <div class="stars mb-3">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">
+                  "Savoria exceeded all expectations. The ambiance is
+                  sophisticated yet welcoming, and the attention to detail in
+                  every course was remarkable. Chef Alessandro's passion truly
+                  shines through in every bite."
+                </p>
+                <div class="testimonial-author">
+                  <img
+                    src="https://i.pravatar.cc/100?img=33"
+                    alt="Michael Chen"
+                    class="testimonial-avatar"
+                  />
+                  <div>
+                    <h5 class="testimonial-name">Michael Chen</h5>
+                    <p class="testimonial-role">Business Executive</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="carousel-item">
+              <div class="testimonial-card">
+                <div class="stars mb-3">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">
+                  "From the moment we walked in, we felt like VIPs. The
+                  sommelier's wine pairing recommendations were spot-on, and the
+                  chocolate soufflé was divine. This is fine dining at its
+                  absolute best!"
+                </p>
+                <div class="testimonial-author">
+                  <img
+                    src="https://i.pravatar.cc/100?img=47"
+                    alt="Emily Rodriguez"
+                    class="testimonial-avatar"
+                  />
+                  <div>
+                    <h5 class="testimonial-name">Emily Rodriguez</h5>
+                    <p class="testimonial-role">Lifestyle Blogger</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carousel Controls -->
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#testimonialsCarousel"
+            data-bs-slide="prev"
+          >
+            <i class="fas fa-chevron-left"></i>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#testimonialsCarousel"
+            data-bs-slide="next"
+          >
+            <i class="fas fa-chevron-right"></i>
+            <span class="visually-hidden">Next</span>
+          </button>
+
+          <!-- Carousel Indicators -->
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#testimonialsCarousel"
+              data-bs-slide-to="0"
+              class="active"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#testimonialsCarousel"
+              data-bs-slide-to="1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#testimonialsCarousel"
+              data-bs-slide-to="2"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section py-5">
+      <div class="container">
+        <div class="newsletter-content glass-effect">
+          <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+              <h2 class="newsletter-title">Stay in the Loop</h2>
+              <p class="newsletter-text">
+                Subscribe to our newsletter for exclusive offers, new menu
+                items, and upcoming events.
+              </p>
+            </div>
+            <div class="col-lg-6">
+              <form id="newsletterForm" class="newsletter-form">
+                <div class="input-group">
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Enter your email"
+                    id="newsletterEmail"
+                    required
+                    aria-label="Email address"
+                  />
+                  <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-paper-plane"></i> Subscribe
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <!-- Main Footer Content -->
+        <div class="row g-4 mb-5">
+          <!-- About Column -->
+          <div class="col-lg-4">
+            <h3 class="footer-title">
+              <i class="fas fa-utensils"></i> SAVORIA
+            </h3>
+            <p class="footer-text">
+              Where culinary art meets unforgettable experiences. Join us for an
+              exceptional dining journey that celebrates flavors, creativity,
+              and passion.
+            </p>
+            <div class="social-links mt-4">
+              <a href="#" aria-label="Facebook"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" aria-label="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" aria-label="Twitter"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" aria-label="TripAdvisor"
+                ><i class="fab fa-tripadvisor"></i
+              ></a>
+              <a href="#" aria-label="Yelp"><i class="fab fa-yelp"></i></a>
+            </div>
+          </div>
+
+          <!-- Quick Links Column -->
+          <div class="col-lg-2 col-md-6">
+            <h4 class="footer-heading">Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="pages/about.html">About Us</a></li>
+              <li><a href="pages/menu.html">Our Menu</a></li>
+              <li><a href="pages/reservations.html">Reservations</a></li>
+              <li><a href="pages/gallery.html">Gallery</a></li>
+              <li><a href="pages/events.html">Events</a></li>
+              <li><a href="pages/blog.html">Blog</a></li>
+              <li><a href="pages/contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Opening Hours Column -->
+          <div class="col-lg-3 col-md-6">
+            <h4 class="footer-heading">Opening Hours</h4>
+            <ul class="footer-hours">
+              <li>
+                <span>Monday - Thursday</span>
+                <span>5:00 PM - 10:00 PM</span>
+              </li>
+              <li>
+                <span>Friday - Saturday</span>
+                <span>5:00 PM - 11:00 PM</span>
+              </li>
+              <li>
+                <span>Sunday</span>
+                <span>4:00 PM - 9:00 PM</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact Info Column -->
+          <div class="col-lg-3 col-md-6">
+            <h4 class="footer-heading">Contact Us</h4>
+            <ul class="footer-contact">
+              <li>
+                <i class="fas fa-map-marker-alt"></i>
+                <span>123 Gourmet Boulevard<br />New York, NY 10001</span>
+              </li>
+              <li>
+                <i class="fas fa-phone"></i>
+                <span>+1 (555) 728-6742</span>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i>
+                <span>info@savoria.com</span>
+              </li>
+            </ul>
+
+            <!-- Payment Methods -->
+            <div class="payment-methods mt-4">
+              <h5 class="footer-subheading">We Accept</h5>
+              <div class="payment-icons">
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-amex"></i>
+                <i class="fab fa-cc-discover"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mini Map -->
+        <div class="footer-map mb-4">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2412648718453!2d-73.98784368459395!3d40.74844097932847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1635180975234!5m2!1sen!2sus"
+            width="100%"
+            height="200"
+            style="border: 0; border-radius: 10px"
+            allowfullscreen=""
+            loading="lazy"
+            title="Restaurant Location"
+          >
+          </iframe>
+        </div>
+
+        <!-- Bottom Footer -->
+        <div class="footer-bottom">
+          <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start">
+              <p class="mb-0">
+                &copy; 2025 Savoria Restaurant. All rights reserved.
+              </p>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+              <ul class="footer-legal">
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Accessibility</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div
+        id="notificationToast"
+        class="toast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="toast-header">
+          <i class="fas fa-check-circle text-success me-2"></i>
+          <strong class="me-auto">Success</strong>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="toast-body">
+          <!-- Toast message will be inserted here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading Animation -->
+    <div id="pageLoader" class="page-loader">
+      <div class="loader-content">
+        <div class="loader-icon">
+          <i class="fas fa-utensils"></i>
+        </div>
+        <div class="loader-text">Loading Savoria...</div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AOS (Animate On Scroll) -->
+
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+  </body>
+</html>

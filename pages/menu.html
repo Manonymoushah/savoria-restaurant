@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explore Savoria's exquisite menu featuring contemporary cuisine, fine wines, and artisanal desserts."
+    />
+    <title>Menu - Savoria Restaurant</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+
+    <style>
+      .menu-hero {
+        height: 50vh;
+        margin-top: 76px;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1920&q=80");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+
+      .dietary-filters {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+
+      .filter-btn {
+        padding: 0.5rem 1.5rem;
+        border: 2px solid var(--primary-color);
+        background: transparent;
+        color: var(--primary-color);
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: var(--primary-color);
+        color: var(--secondary-color);
+      }
+
+      .menu-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 1.5rem 0;
+        border-bottom: 1px dashed #e0e0e0;
+        transition: all 0.3s;
+      }
+
+      .menu-item:hover {
+        transform: translateX(10px);
+      }
+
+      .menu-item-info {
+        flex: 1;
+      }
+
+      .menu-item-name {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--secondary-color);
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .menu-item-desc {
+        color: var(--medium-gray);
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      .menu-item-price {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        font-family: var(--font-heading);
+        margin-left: 2rem;
+      }
+
+      .dietary-badge {
+        display: inline-block;
+        padding: 0.2rem 0.6rem;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      .badge-vegan {
+        background: #27ae60;
+        color: white;
+      }
+
+      .badge-gf {
+        background: #e67e22;
+        color: white;
+      }
+
+      .badge-spicy {
+        background: #e74c3c;
+        color: white;
+      }
+
+      .badge-chef {
+        background: var(--primary-color);
+        color: var(--secondary-color);
+      }
+
+      .download-menu-btn {
+        position: fixed;
+        bottom: 30px;
+        left: 30px;
+        z-index: 999;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="darkModeToggle" class="dark-mode-toggle">
+      <i class="fas fa-moon"></i>
+    </button>
+
+    <nav
+      class="navbar navbar-expand-lg navbar-dark fixed-top scrolled"
+      id="mainNav"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="../index.html"
+          ><i class="fas fa-utensils"></i> SAVORIA</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="menu.html">Menu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="gallery.html">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="events.html">Events</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+          <a
+            href="reservations.html"
+            class="btn btn-primary reserve-btn pulse-animation"
+          >
+            <i class="fas fa-calendar-check"></i> Reserve Now
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <section class="menu-hero">
+      <div class="container text-center">
+        <h1 class="display-3 fw-bold mb-3">Our Menu</h1>
+        <p
+          class="lead"
+          style="
+            color: #d4af37 !important;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+          "
+        >
+          Crafted with Passion, Served with Pride
+        </p>
+      </div>
+    </section>
+
+    <section class="py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="section-label">Filter by Dietary Preference</span>
+          <div class="dietary-filters mt-3">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="vegan">
+              <i class="fas fa-leaf"></i> Vegan
+            </button>
+            <button class="filter-btn" data-filter="gf">
+              <i class="fas fa-wheat"></i> Gluten-Free
+            </button>
+            <button class="filter-btn" data-filter="chef">
+              <i class="fas fa-star"></i> Chef's Pick
+            </button>
+          </div>
+        </div>
+
+        <ul
+          class="nav nav-pills justify-content-center mb-5"
+          id="menuTabs"
+          role="tablist"
+        >
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link active"
+              data-bs-toggle="pill"
+              data-bs-target="#appetizers"
+            >
+              Appetizers
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              data-bs-toggle="pill"
+              data-bs-target="#mains"
+            >
+              Main Courses
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              data-bs-toggle="pill"
+              data-bs-target="#desserts"
+            >
+              Desserts
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              data-bs-toggle="pill"
+              data-bs-target="#beverages"
+            >
+              Beverages
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              data-bs-toggle="pill"
+              data-bs-target="#wine"
+            >
+              Wine List
+            </button>
+          </li>
+        </ul>
+
+        <div class="tab-content" id="menuContent">
+          <!-- Appetizers -->
+          <div class="tab-pane fade show active" id="appetizers">
+            <div class="menu-item" data-tags="chef">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">
+                  Truffle Burrata
+                  <span class="dietary-badge badge-chef"
+                    ><i class="fas fa-star"></i> Chef's Pick</span
+                  >
+                </h3>
+                <p class="menu-item-desc">
+                  Creamy burrata with black truffle oil, heirloom tomatoes, and
+                  micro basil
+                </p>
+              </div>
+              <span class="menu-item-price">$18</span>
+            </div>
+
+            <div class="menu-item" data-tags="gf vegan">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">
+                  Roasted Beet Carpaccio
+                  <span class="dietary-badge badge-vegan"
+                    ><i class="fas fa-leaf"></i> V</span
+                  >
+                  <span class="dietary-badge badge-gf">GF</span>
+                </h3>
+                <p class="menu-item-desc">
+                  Thinly sliced golden beets, arugula, candied walnuts, citrus
+                  vinaigrette
+                </p>
+              </div>
+              <span class="menu-item-price">$14</span>
+            </div>
+
+            <div class="menu-item" data-tags="">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">Seared Scallops</h3>
+                <p class="menu-item-desc">
+                  Pan-seared scallops with cauliflower puree and crispy
+                  prosciutto
+                </p>
+              </div>
+              <span class="menu-item-price">$22</span>
+            </div>
+
+            <div class="menu-item" data-tags="gf">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">
+                  Grilled Octopus
+                  <span class="dietary-badge badge-gf">GF</span>
+                </h3>
+                <p class="menu-item-desc">
+                  Tender octopus with fingerling potatoes, cherry tomatoes, and
+                  salsa verde
+                </p>
+              </div>
+              <span class="menu-item-price">$24</span>
+            </div>
+
+            <div class="menu-item" data-tags="vegan gf">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">
+                  Mushroom Medley
+                  <span class="dietary-badge badge-vegan"
+                    ><i class="fas fa-leaf"></i> V</span
+                  >
+                  <span class="dietary-badge badge-gf">GF</span>
+                </h3>
+                <p class="menu-item-desc">
+                  Wild mushrooms sautéed with garlic, herbs, and white truffle
+                  oil
+                </p>
+              </div>
+              <span class="menu-item-price">$16</span>
+            </div>
+          </div>
+
+          <!-- Main Courses -->
+          <div class="tab-pane fade" id="mains">
+            <div class="menu-item" data-tags="chef">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">
+                  Wagyu Beef Tenderloin
+                  <span class="dietary-badge badge-chef"
+                    ><i class="fas fa-star"></i> Chef's Pick</span
+                  >
+                </h3>
+                <p class="menu-item-desc">
+                  Premium A5 Wagyu with truffle mashed potatoes and seasonal
+                  vegetables
+                </p>
+              </div>
+              <span class="menu-item-price">$68</span>
+            </div>
+
+            <div class="menu-item" data-tags="gf">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">
+                  Pan-Seared Salmon
+                  <span class="dietary-badge badge-gf">GF</span>
+                </h3>
+                <p class="menu-item-desc">
+                  Atlantic salmon with citrus reduction, asparagus, and wild
+                  rice
+                </p>
+              </div>
+              <span class="menu-item-price">$42</span>
+            </div>
+
+            <div class="menu-item" data-tags="chef">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">
+                  Truffle Risotto
+                  <span class="dietary-badge badge-chef"
+                    ><i class="fas fa-star"></i> Chef's Pick</span
+                  >
+                </h3>
+                <p class="menu-item-desc">
+                  Creamy arborio rice with black truffle, parmesan, and wild
+                  mushrooms
+                </p>
+              </div>
+              <span class="menu-item-price">$34</span>
+            </div>
+
+            <div class="menu-item" data-tags="">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">Lamb Rack</h3>
+                <p class="menu-item-desc">
+                  Herb-crusted New Zealand lamb with rosemary jus and roasted
+                  root vegetables
+                </p>
+              </div>
+              <span class="menu-item-price">$54</span>
+            </div>
+
+            <div class="menu-item" data-tags="vegan">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">
+                  Eggplant Parmigiana
+                  <span class="dietary-badge badge-vegan"
+                    ><i class="fas fa-leaf"></i> V</span
+                  >
+                </h3>
+                <p class="menu-item-desc">
+                  Layers of roasted eggplant, tomato sauce, and vegan mozzarella
+                </p>
+              </div>
+              <span class="menu-item-price">$28</span>
+            </div>
+
+            <div class="menu-item" data-tags="gf">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">
+                  Duck Breast
+                  <span class="dietary-badge badge-gf">GF</span>
+                </h3>
+                <p class="menu-item-desc">
+                  Seared duck breast with cherry reduction and sweet potato
+                  purée
+                </p>
+              </div>
+              <span class="menu-item-price">$46</span>
+            </div>
+          </div>
+
+          <!-- Desserts -->
+          <div class="tab-pane fade" id="desserts">
+            <div class="menu-item" data-tags="chef gf">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">
+                  Dark Chocolate Soufflé
+                  <span class="dietary-badge badge-chef"
+                    ><i class="fas fa-star"></i> Chef's Pick</span
+                  >
+                  <span class="dietary-badge badge-gf">GF</span>
+                </h3>
+                <p class="menu-item-desc">
+                  Warm Belgian chocolate soufflé with vanilla bean ice cream
+                </p>
+              </div>
+              <span class="menu-item-price">$16</span>
+            </div>
+
+            <div class="menu-item" data-tags="">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">Tiramisu</h3>
+                <p class="menu-item-desc">
+                  Classic Italian dessert with espresso-soaked ladyfingers and
+                  mascarpone
+                </p>
+              </div>
+              <span class="menu-item-price">$12</span>
+            </div>
+
+            <div class="menu-item" data-tags="gf">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">
+                  Crème Brûlée
+                  <span class="dietary-badge badge-gf">GF</span>
+                </h3>
+                <p class="menu-item-desc">
+                  Vanilla bean custard with caramelized sugar crust
+                </p>
+              </div>
+              <span class="menu-item-price">$14</span>
+            </div>
+
+            <div class="menu-item" data-tags="vegan">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">
+                  Chocolate Avocado Mousse
+                  <span class="dietary-badge badge-vegan"
+                    ><i class="fas fa-leaf"></i> V</span
+                  >
+                </h3>
+                <p class="menu-item-desc">
+                  Rich chocolate mousse made with avocado, topped with fresh
+                  berries
+                </p>
+              </div>
+              <span class="menu-item-price">$11</span>
+            </div>
+
+            <div class="menu-item" data-tags="">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">Seasonal Fruit Tart</h3>
+                <p class="menu-item-desc">
+                  Buttery tart shell with pastry cream and fresh seasonal fruits
+                </p>
+              </div>
+              <span class="menu-item-price">$13</span>
+            </div>
+          </div>
+
+          <!-- Beverages -->
+          <div class="tab-pane fade" id="beverages">
+            <h3 class="h4 mb-4 text-primary">Coffee & Tea</h3>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">Espresso</h3>
+              </div>
+              <span class="menu-item-price">$4</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">Cappuccino</h3>
+              </div>
+              <span class="menu-item-price">$6</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">Selection of Fine Teas</h3>
+              </div>
+              <span class="menu-item-price">$5</span>
+            </div>
+
+            <h3 class="h4 mb-4 mt-5 text-primary">Cocktails</h3>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">Savoria Signature Martini</h3>
+                <p class="menu-item-desc">Vodka, elderflower, lemon twist</p>
+              </div>
+              <span class="menu-item-price">$16</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">Old Fashioned</h3>
+                <p class="menu-item-desc">Bourbon, bitters, orange</p>
+              </div>
+              <span class="menu-item-price">$15</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">Basil Gimlet</h3>
+                <p class="menu-item-desc">Gin, fresh basil, lime</p>
+              </div>
+              <span class="menu-item-price">$14</span>
+            </div>
+          </div>
+
+          <!-- Wine List -->
+          <div class="tab-pane fade" id="wine">
+            <h3 class="h4 mb-4 text-primary">Red Wines</h3>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">Château Margaux, Bordeaux</h3>
+                <p class="menu-item-desc">2015 - France</p>
+              </div>
+              <span class="menu-item-price">$380</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">Opus One, Napa Valley</h3>
+                <p class="menu-item-desc">2018 - California</p>
+              </div>
+              <span class="menu-item-price">$420</span>
+            </div>
+
+            <h3 class="h4 mb-4 mt-5 text-primary">White Wines</h3>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">Chablis Grand Cru</h3>
+                <p class="menu-item-desc">2019 - France</p>
+              </div>
+              <span class="menu-item-price">$145</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">Cloudy Bay Sauvignon Blanc</h3>
+                <p class="menu-item-desc">2021 - New Zealand</p>
+              </div>
+              <span class="menu-item-price">$85</span>
+            </div>
+
+            <h3 class="h4 mb-4 mt-5 text-primary">Champagne & Sparkling</h3>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">Dom Pérignon</h3>
+                <p class="menu-item-desc">2012 - France</p>
+              </div>
+              <span class="menu-item-price">$450</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h3 class="menu-item-name">Prosecco Superiore</h3>
+                <p class="menu-item-desc">NV - Italy</p>
+              </div>
+              <span class="menu-item-price">$65</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <button class="btn btn-primary download-menu-btn" onclick="window.print()">
+      <i class="fas fa-download"></i> Download Menu
+    </button>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row g-4 mb-5">
+          <div class="col-lg-4">
+            <h3 class="footer-title">
+              <i class="fas fa-utensils"></i> SAVORIA
+            </h3>
+            <p class="footer-text">
+              Where culinary art meets unforgettable experiences.
+            </p>
+            <div class="social-links mt-4">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <h4 class="footer-heading">Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="reservations.html">Reservations</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h4 class="footer-heading">Opening Hours</h4>
+            <ul class="footer-hours">
+              <li><span>Mon - Thu</span><span>5PM - 10PM</span></li>
+              <li><span>Fri - Sat</span><span>5PM - 11PM</span></li>
+              <li><span>Sunday</span><span>4PM - 9PM</span></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h4 class="footer-heading">Contact</h4>
+            <ul class="footer-contact">
+              <li>
+                <i class="fas fa-phone"></i><span>+1 (555) 728-6742</span>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i><span>info@savoria.com</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p class="text-center mb-0">
+            &copy; 2025 Savoria Restaurant. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="notificationToast" class="toast" role="alert">
+        <div class="toast-header">
+          <i class="fas fa-check-circle text-success me-2"></i>
+          <strong class="me-auto">Success</strong>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+          ></button>
+        </div>
+        <div class="toast-body"></div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/script.js"></script>
+    <script>
+      // Menu filtering functionality
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      const menuItems = document.querySelectorAll(".menu-item");
+
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+          const filter = this.getAttribute("data-filter");
+
+          filterButtons.forEach((btn) => btn.classList.remove("active"));
+          this.classList.add("active");
+
+          menuItems.forEach((item) => {
+            if (filter === "all") {
+              item.style.display = "flex";
+            } else {
+              const tags = item.getAttribute("data-tags");
+              if (tags && tags.includes(filter)) {
+                item.style.display = "flex";
+              } else {
+                item.style.display = "none";
+              }
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

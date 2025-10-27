@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Test Page</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      body {
+        padding: 50px;
+      }
+      .test-box {
+        background: white;
+        padding: 30px;
+        margin: 20px 0;
+        border: 2px solid #000;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>CSS Loading Test</h1>
+    <p>
+      If you can read this in black/gray text on white background, the page is
+      working.
+    </p>
+
+    <div class="test-box">
+      <h2>Test Box 1</h2>
+      <p class="section-text">
+        This uses the .section-text class from style.css
+      </p>
+      <p class="text-muted">This uses Bootstrap's .text-muted class</p>
+    </div>
+
+    <div class="test-box bg-light">
+      <h2>Test Box 2 (with .bg-light)</h2>
+      <p>This div has Bootstrap's bg-light class applied.</p>
+    </div>
+
+    <p>
+      <strong>If any text is invisible, we have a color contrast issue.</strong>
+    </p>
+  </body>
+</html>

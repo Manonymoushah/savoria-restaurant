@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Learn about Savoria's story, our passionate team, and our commitment to culinary excellence."
+    />
+    <title>About Us - Savoria Restaurant</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- AOS REMOVED - Using CSS animations instead -->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css?v=2" />
+
+    <style>
+      /* Simple CSS animations - no library needed */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-fade {
+        animation: fadeInUp 0.8s ease-out forwards;
+        opacity: 0;
+      }
+
+      .delay-1 {
+        animation-delay: 0.1s;
+      }
+      .delay-2 {
+        animation-delay: 0.2s;
+      }
+      .delay-3 {
+        animation-delay: 0.3s;
+      }
+
+      /* Force text visibility */
+      p,
+      .text-muted,
+      .section-text {
+        color: #333333 !important;
+      }
+
+      body.dark-mode p,
+      body.dark-mode .text-muted,
+      body.dark-mode .section-text {
+        color: #e0e0e0 !important;
+      }
+
+      /* Page-specific styles */
+      .about-hero {
+        height: 60vh;
+        min-height: 400px;
+        margin-top: 76px;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url("https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=1920&q=80");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+      }
+
+      /* Make hero subtitle gold for visibility */
+      .about-hero .lead {
+        color: #d4af37 !important;
+        font-size: 1.5rem !important;
+        font-weight: 400 !important;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+      }
+
+      .timeline {
+        position: relative;
+        padding: 2rem 0;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        height: 100%;
+        background: var(--primary-color);
+      }
+
+      .timeline-item {
+        margin-bottom: 3rem;
+        position: relative;
+      }
+
+      .timeline-item:nth-child(odd) .timeline-content {
+        margin-left: auto;
+        text-align: left;
+      }
+
+      .timeline-item:nth-child(even) .timeline-content {
+        margin-right: auto;
+        text-align: right;
+      }
+
+      .timeline-content {
+        width: 45%;
+        padding: 2rem;
+        background: var(--white);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+        position: relative;
+      }
+
+      body.dark-mode .timeline-content {
+        background: var(--secondary-light);
+      }
+
+      .timeline-year {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--primary-color);
+        color: var(--secondary-color);
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.2rem;
+        box-shadow: var(--shadow-lg);
+      }
+
+      .chef-card {
+        text-align: center;
+        padding: 2rem;
+        background: var(--white);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition-smooth);
+        height: 100%;
+      }
+
+      body.dark-mode .chef-card {
+        background: var(--secondary-light);
+      }
+
+      .chef-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-xl);
+      }
+
+      .chef-image {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        margin: 0 auto 1.5rem;
+        overflow: hidden;
+        border: 5px solid var(--primary-color);
+      }
+
+      .chef-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .award-card {
+        background: var(--light-gray);
+        padding: 2rem;
+        border-radius: var(--radius-lg);
+        text-align: center;
+        transition: var(--transition-smooth);
+      }
+
+      body.dark-mode .award-card {
+        background: var(--secondary-light);
+      }
+
+      .award-card:hover {
+        transform: scale(1.05);
+      }
+
+      .award-icon {
+        font-size: 3rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+      }
+
+      @media (max-width: 768px) {
+        .timeline::before {
+          left: 20px;
+        }
+
+        .timeline-content {
+          width: calc(100% - 80px);
+          margin-left: 80px !important;
+          text-align: left !important;
+        }
+
+        .timeline-year {
+          left: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Dark Mode Toggle -->
+    <button
+      id="darkModeToggle"
+      class="dark-mode-toggle"
+      aria-label="Toggle dark mode"
+    >
+      <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand" href="../index.html">
+          <i class="fas fa-utensils"></i> SAVORIA
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="menu.html">Menu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="gallery.html">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="events.html">Events</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+          <a
+            href="reservations.html"
+            class="btn btn-primary reserve-btn pulse-animation"
+          >
+            <i class="fas fa-calendar-check"></i> Reserve Now
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+      <div class="container">
+        <h1 class="display-3 fw-bold mb-3">Our Story</h1>
+        <p class="lead">A Passion for Excellence, A Commitment to Flavor</p>
+      </div>
+    </section>
+
+    <!-- Restaurant Story -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row align-items-center mb-5">
+          <div class="col-lg-6">
+            <span class="section-label">Since 2015</span>
+            <h2 class="section-title">Where It All Began</h2>
+            <p class="section-text">
+              Savoria was born from a simple dream: to create a dining
+              experience that transcends the ordinary. Founded by Chef
+              Alessandro Marchetti in 2015, our restaurant has become a beloved
+              destination for food enthusiasts seeking authentic flavors and
+              impeccable service.
+            </p>
+            <p class="section-text">
+              What started as a small 20-seat establishment has grown into an
+              award-winning restaurant, while never losing sight of our core
+              values: quality ingredients, culinary innovation, and warm
+              hospitality that makes every guest feel like family.
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <img
+              src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800&q=80"
+              alt="Restaurant interior"
+              class="img-fluid rounded shadow-lg"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission & Values -->
+    <section class="py-5 bg-light">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="section-label">What Drives Us</span>
+          <h2 class="section-title">Our Mission & Values</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="text-center p-4">
+              <div class="mb-3">
+                <i
+                  class="fas fa-leaf"
+                  style="font-size: 3rem; color: var(--primary-color)"
+                ></i>
+              </div>
+              <h3 class="h4 mb-3">Sustainability</h3>
+              <p class="text-muted">
+                We partner with local farmers and suppliers who share our
+                commitment to sustainable, ethical practices. Every ingredient
+                tells a story of care for our planet.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="text-center p-4">
+              <div class="mb-3">
+                <i
+                  class="fas fa-heart"
+                  style="font-size: 3rem; color: var(--primary-color)"
+                ></i>
+              </div>
+              <h3 class="h4 mb-3">Passion</h3>
+              <p class="text-muted">
+                Our team's passion for culinary excellence is evident in every
+                dish we serve. We don't just cook food; we create memorable
+                experiences that touch the heart.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="text-center p-4">
+              <div class="mb-3">
+                <i
+                  class="fas fa-star"
+                  style="font-size: 3rem; color: var(--primary-color)"
+                ></i>
+              </div>
+              <h3 class="h4 mb-3">Excellence</h3>
+              <p class="text-muted">
+                We hold ourselves to the highest standards in everything we do,
+                from sourcing ingredients to plating the final dish and
+                welcoming our guests.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chef Profiles -->
+    <section class="py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="section-label">Meet Our Team</span>
+          <h2 class="section-title">The Culinary Masters</h2>
+        </div>
+        <div class="row g-4">
+          <!-- Head Chef -->
+          <div class="col-lg-4 col-md-6">
+            <div class="chef-card">
+              <div class="chef-image">
+                <img
+                  src="https://i.pravatar.cc/400?img=12"
+                  alt="Chef Alessandro Marchetti"
+                />
+              </div>
+              <h3 class="h4 mb-2">Alessandro Marchetti</h3>
+              <p class="text-primary mb-3">
+                <strong>Executive Chef & Founder</strong>
+              </p>
+              <p class="text-muted mb-3">
+                With 25 years of experience across Michelin-starred restaurants
+                in Italy and France, Chef Alessandro brings authentic European
+                flavors to New York.
+              </p>
+              <div class="social-links justify-content-center">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sous Chef -->
+          <div class="col-lg-4 col-md-6">
+            <div class="chef-card">
+              <div class="chef-image">
+                <img
+                  src="https://i.pravatar.cc/400?img=27"
+                  alt="Chef Maria Santos"
+                />
+              </div>
+              <h3 class="h4 mb-2">Maria Santos</h3>
+              <p class="text-primary mb-3"><strong>Sous Chef</strong></p>
+              <p class="text-muted mb-3">
+                Trained in Barcelona and Tokyo, Chef Maria specializes in fusion
+                cuisine, bringing innovative techniques and bold flavors to our
+                menu.
+              </p>
+              <div class="social-links justify-content-center">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pastry Chef -->
+          <div class="col-lg-4 col-md-6">
+            <div class="chef-card">
+              <div class="chef-image">
+                <img
+                  src="https://i.pravatar.cc/400?img=32"
+                  alt="Chef Jean-Pierre Dubois"
+                />
+              </div>
+              <h3 class="h4 mb-2">Jean-Pierre Dubois</h3>
+              <p class="text-primary mb-3"><strong>Pastry Chef</strong></p>
+              <p class="text-muted mb-3">
+                A master of French pâtisserie, Chef Jean-Pierre creates stunning
+                desserts that are as beautiful as they are delicious.
+              </p>
+              <div class="social-links justify-content-center">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Awards & Recognition -->
+    <section class="py-5 bg-light">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="section-label">Accolades</span>
+          <h2 class="section-title">Awards & Recognition</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-3 col-md-6">
+            <div class="award-card">
+              <div class="award-icon"><i class="fas fa-trophy"></i></div>
+              <h4>Michelin Bib Gourmand</h4>
+              <p class="text-muted mb-0">2020, 2021, 2022, 2023</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="award-card">
+              <div class="award-icon"><i class="fas fa-award"></i></div>
+              <h4>James Beard Nominee</h4>
+              <p class="text-muted mb-0">Best Chef: NY 2022</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="award-card">
+              <div class="award-icon"><i class="fas fa-medal"></i></div>
+              <h4>Wine Spectator</h4>
+              <p class="text-muted mb-0">Award of Excellence</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="award-card">
+              <div class="award-icon"><i class="fas fa-star"></i></div>
+              <h4>NY Times</h4>
+              <p class="text-muted mb-0">3 Stars (2021)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="section-label">Our Journey</span>
+          <h2 class="section-title">Milestones & Memories</h2>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">2015</div>
+            <div class="timeline-content">
+              <h3 class="h4 mb-3">Grand Opening</h3>
+              <p class="text-muted">
+                Savoria opens its doors with a 20-seat intimate dining room,
+                focusing on seasonal Italian cuisine.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2017</div>
+            <div class="timeline-content">
+              <h3 class="h4 mb-3">First Expansion</h3>
+              <p class="text-muted">
+                Doubled our capacity to accommodate growing demand and added a
+                private dining room for special events.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2019</div>
+            <div class="timeline-content">
+              <h3 class="h4 mb-3">Wine Cellar Launch</h3>
+              <p class="text-muted">
+                Unveiled our curated wine cellar featuring over 500 bottles from
+                around the world.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2020</div>
+            <div class="timeline-content">
+              <h3 class="h4 mb-3">Michelin Recognition</h3>
+              <p class="text-muted">
+                Received our first Michelin Bib Gourmand, recognizing quality
+                food at moderate prices.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2023</div>
+            <div class="timeline-content">
+              <h3 class="h4 mb-3">Sustainability Initiative</h3>
+              <p class="text-muted">
+                Launched our zero-waste kitchen program and rooftop garden,
+                growing 30% of our herbs and vegetables.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Photo Section -->
+    <section class="py-5 bg-light">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="section-label">Behind the Scenes</span>
+          <h2 class="section-title">Our Passionate Team</h2>
+          <p class="section-subtitle">
+            The people who make Savoria extraordinary
+          </p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <img
+              src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80"
+              alt="Team in kitchen"
+              class="img-fluid rounded shadow"
+            />
+          </div>
+          <div class="col-md-6">
+            <img
+              src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80"
+              alt="Team serving"
+              class="img-fluid rounded shadow"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5">
+      <div class="container text-center">
+        <div>
+          <h2 class="display-4 mb-4">Ready to Experience Savoria?</h2>
+          <p class="lead mb-4">Join us for an unforgettable culinary journey</p>
+          <a href="reservations.html" class="btn btn-primary btn-lg me-3">
+            <i class="fas fa-calendar-check"></i> Make a Reservation
+          </a>
+          <a href="menu.html" class="btn btn-outline-primary btn-lg">
+            <i class="fas fa-book-open"></i> View Our Menu
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row g-4 mb-5">
+          <div class="col-lg-4">
+            <h3 class="footer-title">
+              <i class="fas fa-utensils"></i> SAVORIA
+            </h3>
+            <p class="footer-text">
+              Where culinary art meets unforgettable experiences.
+            </p>
+            <div class="social-links mt-4">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-tripadvisor"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <h4 class="footer-heading">Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="menu.html">Menu</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h4 class="footer-heading">Opening Hours</h4>
+            <ul class="footer-hours">
+              <li><span>Mon - Thu</span><span>5PM - 10PM</span></li>
+              <li><span>Fri - Sat</span><span>5PM - 11PM</span></li>
+              <li><span>Sunday</span><span>4PM - 9PM</span></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h4 class="footer-heading">Contact Us</h4>
+            <ul class="footer-contact">
+              <li>
+                <i class="fas fa-map-marker-alt"></i
+                ><span>123 Gourmet Blvd<br />New York, NY 10001</span>
+              </li>
+              <li>
+                <i class="fas fa-phone"></i><span>+1 (555) 728-6742</span>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i><span>info@savoria.com</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="row">
+            <div class="col-md-6 text-center text-md-start">
+              <p class="mb-0">
+                &copy; 2025 Savoria Restaurant. All rights reserved.
+              </p>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+              <ul class="footer-legal">
+                <li><a href="#">Privacy</a></li>
+                <li><a href="#">Terms</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="notificationToast" class="toast" role="alert">
+        <div class="toast-header">
+          <i class="fas fa-check-circle text-success me-2"></i>
+          <strong class="me-auto">Success</strong>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+          ></button>
+        </div>
+        <div class="toast-body"></div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS REMOVED - Using CSS animations instead -->
+    <script src="../js/script.js"></script>
+  </body>
+</html>

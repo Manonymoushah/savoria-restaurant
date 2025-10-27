@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Savoria Admin Dashboard - Database Viewer</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary-color: #d4af37;
+        --secondary-color: #1a1a1a;
+      }
+
+      body {
+        background: #f8f9fa;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .navbar {
+        background: linear-gradient(135deg, var(--secondary-color), #2d2d2d);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .navbar-brand {
+        color: var(--primary-color) !important;
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+
+      .dashboard-header {
+        background: linear-gradient(135deg, var(--secondary-color), #2d2d2d);
+        color: white;
+        padding: 2rem 0;
+        margin-bottom: 2rem;
+      }
+
+      .stat-card {
+        border-radius: 12px;
+        border: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .stat-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+      }
+
+      .table-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .table-title {
+        color: var(--secondary-color);
+        font-weight: bold;
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid var(--primary-color);
+        padding-bottom: 0.5rem;
+      }
+
+      .table {
+        margin-bottom: 0;
+      }
+
+      .table thead th {
+        background: var(--secondary-color);
+        color: white;
+        border: none;
+        font-weight: 600;
+      }
+
+      .badge-status {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+      }
+
+      .refresh-btn {
+        background: var(--primary-color);
+        color: var(--secondary-color);
+        border: none;
+        padding: 0.5rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .refresh-btn:hover {
+        background: #c19b2e;
+        transform: scale(1.05);
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 3rem;
+        color: #999;
+      }
+
+      .empty-state i {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        opacity: 0.3;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <i class="fas fa-utensils me-2"></i>Savoria Admin
+        </a>
+        <div class="ms-auto">
+          <button class="btn refresh-btn" onclick="loadAllData()">
+            <i class="fas fa-sync-alt me-2"></i>Refresh All
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="dashboard-header">
+      <div class="container">
+        <h1 class="mb-2">
+          <i class="fas fa-database me-3"></i>Database Dashboard
+        </h1>
+        <p class="mb-0 opacity-75">
+          Real-time view of your Savoria restaurant data
+        </p>
+      </div>
+    </div>
+
+    <div class="container mb-5">
+      <!-- Statistics Cards -->
+      <div class="row g-4 mb-4" id="statsContainer">
+        <div class="col-md-3">
+          <div class="card stat-card">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <p class="text-muted mb-1">Total Reservations</p>
+                  <h3 class="mb-0" id="totalReservations">0</h3>
+                </div>
+                <div class="stat-icon bg-primary bg-opacity-10 text-primary">
+                  <i class="fas fa-calendar-check"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card stat-card">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <p class="text-muted mb-1">Contact Messages</p>
+                  <h3 class="mb-0" id="totalContacts">0</h3>
+                </div>
+                <div class="stat-icon bg-success bg-opacity-10 text-success">
+                  <i class="fas fa-envelope"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card stat-card">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <p class="text-muted mb-1">Newsletter Subscribers</p>
+                  <h3 class="mb-0" id="totalSubscribers">0</h3>
+                </div>
+                <div class="stat-icon bg-warning bg-opacity-10 text-warning">
+                  <i class="fas fa-users"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card stat-card">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <p class="text-muted mb-1">Event Inquiries</p>
+                  <h3 class="mb-0" id="totalEvents">0</h3>
+                </div>
+                <div class="stat-icon bg-danger bg-opacity-10 text-danger">
+                  <i class="fas fa-glass-cheers"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reservations Table -->
+      <div class="table-card">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h2 class="table-title mb-0">
+            <i class="fas fa-calendar-check me-2"></i>Reservations
+          </h2>
+          <button class="btn btn-sm refresh-btn" onclick="loadReservations()">
+            <i class="fas fa-sync-alt"></i>
+          </button>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover" id="reservationsTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Guests</th>
+                <th>Occasion</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="reservationsBody">
+              <tr>
+                <td colspan="9" class="text-center">
+                  <i class="fas fa-spinner fa-spin"></i> Loading...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Contact Submissions Table -->
+      <div class="table-card">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h2 class="table-title mb-0">
+            <i class="fas fa-envelope me-2"></i>Contact Submissions
+          </h2>
+          <button class="btn btn-sm refresh-btn" onclick="loadContacts()">
+            <i class="fas fa-sync-alt"></i>
+          </button>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover" id="contactsTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Message</th>
+                <th>Created</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="contactsBody">
+              <tr>
+                <td colspan="7" class="text-center">
+                  <i class="fas fa-spinner fa-spin"></i> Loading...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Newsletter Subscribers Table -->
+      <div class="table-card">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h2 class="table-title mb-0">
+            <i class="fas fa-users me-2"></i>Newsletter Subscribers
+          </h2>
+          <button class="btn btn-sm refresh-btn" onclick="loadSubscribers()">
+            <i class="fas fa-sync-alt"></i>
+          </button>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover" id="subscribersTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Subscribed At</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="subscribersBody">
+              <tr>
+                <td colspan="5" class="text-center">
+                  <i class="fas fa-spinner fa-spin"></i> Loading...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Event Inquiries Table -->
+      <div class="table-card">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h2 class="table-title mb-0">
+            <i class="fas fa-glass-cheers me-2"></i>Event Inquiries
+          </h2>
+          <button class="btn btn-sm refresh-btn" onclick="loadEvents()">
+            <i class="fas fa-sync-alt"></i>
+          </button>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover" id="eventsTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Event Type</th>
+                <th>Event Date</th>
+                <th>Guests</th>
+                <th>Created</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="eventsBody">
+              <tr>
+                <td colspan="8" class="text-center">
+                  <i class="fas fa-spinner fa-spin"></i> Loading...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const API_URL =
+        window.location.hostname === "localhost" ||
+        window.location.hostname === "127.0.0.1"
+          ? "http://localhost:3000/api"
+          : "/api";
+
+      async function apiCall(endpoint) {
+        try {
+          const response = await fetch(`${API_URL}${endpoint}`);
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.error("API Error:", error);
+          return null;
+        }
+      }
+
+      async function loadReservations() {
+        const tbody = document.getElementById("reservationsBody");
+        tbody.innerHTML =
+          '<tr><td colspan="9" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>';
+
+        const data = await apiCall("/reservations");
+
+        if (data && data.success && data.reservations.length > 0) {
+          tbody.innerHTML = data.reservations
+            .map(
+              (r) => `
+                    <tr>
+                        <td>${r.id}</td>
+                        <td>${r.name}</td>
+                        <td>${r.email}</td>
+                        <td>${r.phone}</td>
+                        <td>${r.date}</td>
+                        <td>${r.time}</td>
+                        <td>${r.guests}</td>
+                        <td>${r.occasion || "N/A"}</td>
+                        <td><span class="badge badge-status bg-${
+                          r.status === "pending" ? "warning" : "success"
+                        }">${r.status}</span></td>
+                    </tr>
+                `
+            )
+            .join("");
+          document.getElementById("totalReservations").textContent =
+            data.reservations.length;
+        } else {
+          tbody.innerHTML =
+            '<tr><td colspan="9" class="empty-state"><div><i class="fas fa-calendar-times"></i><p>No reservations yet</p></div></td></tr>';
+          document.getElementById("totalReservations").textContent = "0";
+        }
+      }
+
+      async function loadContacts() {
+        const tbody = document.getElementById("contactsBody");
+        tbody.innerHTML =
+          '<tr><td colspan="7" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>';
+
+        const data = await apiCall("/contact");
+
+        if (
+          data &&
+          data.success &&
+          data.submissions &&
+          data.submissions.length > 0
+        ) {
+          tbody.innerHTML = data.submissions
+            .map(
+              (c) => `
+                    <tr>
+                        <td>${c.id}</td>
+                        <td>${c.name}</td>
+                        <td>${c.email}</td>
+                        <td>${c.subject || "N/A"}</td>
+                        <td>${c.message.substring(0, 50)}...</td>
+                        <td>${new Date(c.created_at).toLocaleDateString()}</td>
+                        <td><span class="badge badge-status bg-${
+                          c.status === "new" ? "info" : "secondary"
+                        }">${c.status}</span></td>
+                    </tr>
+                `
+            )
+            .join("");
+          document.getElementById("totalContacts").textContent =
+            data.submissions.length;
+        } else {
+          tbody.innerHTML =
+            '<tr><td colspan="7" class="empty-state"><div><i class="fas fa-envelope-open"></i><p>No contact submissions yet</p></div></td></tr>';
+          document.getElementById("totalContacts").textContent = "0";
+        }
+      }
+
+      async function loadSubscribers() {
+        const tbody = document.getElementById("subscribersBody");
+        tbody.innerHTML =
+          '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>';
+
+        const data = await apiCall("/newsletter/subscribers");
+
+        if (
+          data &&
+          data.success &&
+          data.subscribers &&
+          data.subscribers.length > 0
+        ) {
+          tbody.innerHTML = data.subscribers
+            .map(
+              (s) => `
+                    <tr>
+                        <td>${s.id}</td>
+                        <td>${s.email}</td>
+                        <td>${s.name || "N/A"}</td>
+                        <td>${new Date(
+                          s.subscribed_at
+                        ).toLocaleDateString()}</td>
+                        <td><span class="badge badge-status bg-success">${
+                          s.status
+                        }</span></td>
+                    </tr>
+                `
+            )
+            .join("");
+          document.getElementById("totalSubscribers").textContent =
+            data.subscribers.length;
+        } else {
+          tbody.innerHTML =
+            '<tr><td colspan="5" class="empty-state"><div><i class="fas fa-user-slash"></i><p>No subscribers yet</p></div></td></tr>';
+          document.getElementById("totalSubscribers").textContent = "0";
+        }
+      }
+
+      async function loadEvents() {
+        const tbody = document.getElementById("eventsBody");
+        tbody.innerHTML =
+          '<tr><td colspan="8" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>';
+
+        const data = await apiCall("/events/inquiries");
+
+        if (
+          data &&
+          data.success &&
+          data.inquiries &&
+          data.inquiries.length > 0
+        ) {
+          tbody.innerHTML = data.inquiries
+            .map(
+              (e) => `
+                    <tr>
+                        <td>${e.id}</td>
+                        <td>${e.name}</td>
+                        <td>${e.email}</td>
+                        <td>${e.event_type}</td>
+                        <td>${e.event_date}</td>
+                        <td>${e.guest_count}</td>
+                        <td>${new Date(e.created_at).toLocaleDateString()}</td>
+                        <td><span class="badge badge-status bg-warning">${
+                          e.status
+                        }</span></td>
+                    </tr>
+                `
+            )
+            .join("");
+          document.getElementById("totalEvents").textContent =
+            data.inquiries.length;
+        } else {
+          tbody.innerHTML =
+            '<tr><td colspan="8" class="empty-state"><div><i class="fas fa-glass-martini-alt"></i><p>No event inquiries yet</p></div></td></tr>';
+          document.getElementById("totalEvents").textContent = "0";
+        }
+      }
+
+      function loadAllData() {
+        loadReservations();
+        loadContacts();
+        loadSubscribers();
+        loadEvents();
+      }
+
+      // Load data on page load
+      window.addEventListener("load", loadAllData);
+
+      // Auto-refresh every 30 seconds
+      setInterval(loadAllData, 30000);
+    </script>
+  </body>
+</html>
