@@ -11,6 +11,20 @@ Full-stack restaurant website with a modern frontend (HTML/CSS/JS) and a complet
 - Real database (SQLite) with CRUD APIs and an admin dashboard
 - Optional email notifications via Nodemailer
 
+## 🎛️ Admin Dashboard
+
+Access the admin dashboard at `/admin-dashboard.html` to:
+
+- View all reservations with real-time data
+- Manage contact form submissions
+- Track newsletter subscribers
+- Monitor event inquiries
+- **Delete entries** with one click
+- **Update reservation status** (pending ⇄ confirmed)
+- Auto-refresh every 30 seconds
+
+**Live Demo:** https://savoria-restaurant-production.up.railway.app/admin-dashboard.html
+
 ## 🛠️ Tech Stack
 
 - Frontend: HTML5, CSS3, JavaScript (ES6+), Bootstrap 5, AOS, GLightbox, Font Awesome, Google Fonts
