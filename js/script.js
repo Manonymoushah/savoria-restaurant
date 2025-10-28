@@ -18,6 +18,21 @@ const AppState = {
 // PAGE LOADER
 // ========================================
 window.addEventListener("load", function () {
+  // Progress bar animation
+  const skipLink = document.querySelector(".skip-link");
+  if (skipLink) {
+    // Start animation
+    setTimeout(() => {
+      skipLink.classList.add("loading");
+    }, 10);
+
+    // Fade out after completion
+    setTimeout(() => {
+      skipLink.classList.add("loaded");
+    }, 500);
+  }
+
+  // Main page loader
   const loader = document.getElementById("pageLoader");
   if (loader) {
     setTimeout(() => {
@@ -40,6 +55,28 @@ window.addEventListener("scroll", function () {
       navbar.classList.remove("scrolled");
     }
   }
+});
+
+// Progress bar on navigation clicks
+document.addEventListener("DOMContentLoaded", function () {
+  const skipLink = document.querySelector(".skip-link");
+  const navLinks = document.querySelectorAll(
+    "a[href^='pages/'], a[href='../index.html'], a[href='index.html']"
+  );
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      if (skipLink) {
+        skipLink.classList.remove("loading", "loaded");
+        skipLink.style.width = "0%";
+        skipLink.style.opacity = "1";
+
+        setTimeout(() => {
+          skipLink.classList.add("loading");
+        }, 10);
+      }
+    });
+  });
 });
 
 // ========================================

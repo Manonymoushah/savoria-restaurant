@@ -56,18 +56,28 @@
         background: var(--primary-color);
         color: var(--secondary-color);
       }
+      .gallery-item-container {
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        opacity: 1;
+        transform: scale(1);
+      }
+      .gallery-item-container.hide {
+        display: none;
+      }
       .gallery-item {
+        display: block;
         overflow: hidden;
         border-radius: var(--radius-md);
         position: relative;
         cursor: pointer;
-        margin-bottom: 1.5rem;
+        height: 100%;
       }
       .gallery-item img {
         width: 100%;
         height: 300px;
         object-fit: cover;
         transition: transform 0.5s;
+        display: block;
       }
       .gallery-item:hover img {
         transform: scale(1.1);
@@ -82,6 +92,16 @@
         color: white;
         opacity: 0;
         transition: opacity 0.3s;
+      }
+      .gallery-item-overlay h5 {
+        color: var(--primary-color);
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+      }
+      .gallery-item-overlay p {
+        color: #e8d192;
+        margin-bottom: 0;
+        font-size: 0.9rem;
       }
       .gallery-item:hover .gallery-item-overlay {
         opacity: 1;
@@ -167,9 +187,12 @@
           <button class="filter-btn" data-filter="team">Team</button>
         </div>
 
-        <div class="row" id="galleryGrid">
+        <div class="row g-4" id="galleryGrid">
           <!-- Food Images -->
-          <div class="col-md-4 gallery-item-container" data-category="food">
+          <div
+            class="col-lg-4 col-md-6 gallery-item-container"
+            data-category="food"
+          >
             <a
               href="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1200&q=80"
               class="gallery-item glightbox"
@@ -185,7 +208,10 @@
               </div>
             </a>
           </div>
-          <div class="col-md-4 gallery-item-container" data-category="food">
+          <div
+            class="col-lg-4 col-md-6 gallery-item-container"
+            data-category="food"
+          >
             <a
               href="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=1200&q=80"
               class="gallery-item glightbox"
@@ -201,7 +227,10 @@
               </div>
             </a>
           </div>
-          <div class="col-md-4 gallery-item-container" data-category="food">
+          <div
+            class="col-lg-4 col-md-6 gallery-item-container"
+            data-category="food"
+          >
             <a
               href="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=1200&q=80"
               class="gallery-item glightbox"
@@ -219,7 +248,10 @@
           </div>
 
           <!-- Interior Images -->
-          <div class="col-md-4 gallery-item-container" data-category="interior">
+          <div
+            class="col-lg-4 col-md-6 gallery-item-container"
+            data-category="interior"
+          >
             <a
               href="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80"
               class="gallery-item glightbox"
@@ -235,7 +267,10 @@
               </div>
             </a>
           </div>
-          <div class="col-md-4 gallery-item-container" data-category="interior">
+          <div
+            class="col-lg-4 col-md-6 gallery-item-container"
+            data-category="interior"
+          >
             <a
               href="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1200&q=80"
               class="gallery-item glightbox"
@@ -251,7 +286,10 @@
               </div>
             </a>
           </div>
-          <div class="col-md-4 gallery-item-container" data-category="interior">
+          <div
+            class="col-lg-4 col-md-6 gallery-item-container"
+            data-category="interior"
+          >
             <a
               href="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=1200&q=80"
               class="gallery-item glightbox"
@@ -269,7 +307,10 @@
           </div>
 
           <!-- Events -->
-          <div class="col-md-4 gallery-item-container" data-category="events">
+          <div
+            class="col-lg-4 col-md-6 gallery-item-container"
+            data-category="events"
+          >
             <a
               href="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=1200&q=80"
               class="gallery-item glightbox"
@@ -285,7 +326,10 @@
               </div>
             </a>
           </div>
-          <div class="col-md-4 gallery-item-container" data-category="events">
+          <div
+            class="col-lg-4 col-md-6 gallery-item-container"
+            data-category="events"
+          >
             <a
               href="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?w=1200&q=80"
               class="gallery-item glightbox"
@@ -303,7 +347,10 @@
           </div>
 
           <!-- Team -->
-          <div class="col-md-4 gallery-item-container" data-category="team">
+          <div
+            class="col-lg-4 col-md-6 gallery-item-container"
+            data-category="team"
+          >
             <a
               href="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1200&q=80"
               class="gallery-item glightbox"
@@ -367,15 +414,29 @@
           this.classList.add("active");
 
           galleryItems.forEach((item) => {
-            if (filter === "all") {
-              item.style.display = "block";
-            } else {
-              if (item.getAttribute("data-category") === filter) {
+            // Add fade out effect
+            item.style.opacity = "0";
+            item.style.transform = "scale(0.8)";
+
+            setTimeout(() => {
+              if (filter === "all") {
                 item.style.display = "block";
+                setTimeout(() => {
+                  item.style.opacity = "1";
+                  item.style.transform = "scale(1)";
+                }, 10);
               } else {
-                item.style.display = "none";
+                if (item.getAttribute("data-category") === filter) {
+                  item.style.display = "block";
+                  setTimeout(() => {
+                    item.style.opacity = "1";
+                    item.style.transform = "scale(1)";
+                  }, 10);
+                } else {
+                  item.style.display = "none";
+                }
               }
-            }
+            }, 300);
           });
         });
       });
