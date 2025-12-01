@@ -2,7 +2,7 @@
 
 Full-stack restaurant website with a modern frontend (HTML/CSS/JS) and a complete Node.js + Express + SQLite backend for reservations, contact forms, newsletter subscriptions, and event inquiries.
 
-**🌐 Live Demo:** https://savoria-restaurant-production.up.railway.app/
+**🌐 Live Demo:** [https://savoria-restaurant-4zy0.onrender.com/](https://savoria-restaurant-4zy0.onrender.com/)
 
 ## ✨ Highlights
 
@@ -23,7 +23,7 @@ Access the admin dashboard at `/admin-dashboard.html` to:
 - **Update reservation status** (pending ⇄ confirmed)
 - Auto-refresh every 30 seconds
 
-**Live Demo:** https://savoria-restaurant-production.up.railway.app/admin-dashboard.html
+**Live Demo:** [https://savoria-restaurant-4zy0.onrender.com/admin-dashboard.html)](https://savoria-restaurant-4zy0.onrender.com/admin-dashboard.html)
 
 ## 🛠️ Tech Stack
 
@@ -125,13 +125,14 @@ All endpoints are prefixed with `/api`:
 
 ## 🚀 Deployment
 
-The site is deployed on Railway with persistent SQLite storage. You can deploy your own copy:
+The site is deployed on Render with persistent SQLite storage. You can deploy your own copy:
 
 1. Fork this repository
-2. Sign up at [Railway](https://railway.app)
-3. Create a new project from your GitHub fork
-4. Railway will automatically detect Node.js and deploy
-5. (Optional) Add environment variables for email functionality
+2. Sign up at [Render](https://render.com)
+3. Click "New +" → "Web Service"
+4. Connect your GitHub repository
+5. Render will automatically detect Node.js and use `npm start`
+6. (Optional) Add environment variables for email functionality in the "Environment" tab
 
 ## 📄 License
 
